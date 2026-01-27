@@ -1,12 +1,13 @@
 {
   "metadata": {
     "title": "CULTI Re FINE | Advanced Preventive & Aesthetic Medicine",
-    "description": "A referral-only private clinic. Advanced medical care for executives, backed by the 50-year history of the Tenma Hospital Group."
+    "description": "A referral-only, reservation-only private clinic. Advanced medical care for executives, backed by the 50-year history of the Tenma Hospital Group."
   },
   "brand": {
     "name": "CULTI Re FINE",
     "tagline": "Now Exclusive, Future Standard.",
-    "philosophy": "Aging is a treatable disease."
+    "philosophy": "Aging is a treatable disease.",
+    "status": "Referral-Only | Reservation-Only"
   },
   "navigation": {
     "home": "Home",
@@ -20,86 +21,160 @@
   "hero": {
     "title": "Now Exclusive,",
     "titleAccent": "Future Standard.",
-    "subtitle": "Advanced Preventive & Aesthetic Medicine",
-    "description": "A referral-only private clinic. Supporting executives' health and beauty with cutting-edge medicine.",
-    "cta": "Contact Us"
+    "subtitle": "A New Health Standard for Executives",
+    "description": "What's exclusive today becomes the standard tomorrow. Experience cutting-edge preventive and aesthetic medicine at our referral-only private clinic.",
+    "cta": "Contact Us",
+    "scroll": "Scroll"
   },
   "about": {
     "title": "50 Years of Tenma Hospital Group",
-    "heritage": "Over 50 medical facilities across Japan and Southeast Asia",
-    "environment": "100% nanoe X air purification environment",
+    "heritage": "Over 50 medical facilities across Osaka, Hyogo, and Tokushima",
+    "environment": "All rooms equipped with nanoe X air purification",
     "philosophy": {
       "title": "Our Philosophy",
-      "description": "Aging is a treatable disease—guided by this belief, we provide cutting-edge preventive and aesthetic medicine."
-    }
-  },
-  "services": {
-    "title": "Services",
-    "internal": {
-      "title": "Internal Medicine & Prevention",
-      "items": {
-        "nad": "NAD+ IV Therapy",
-        "stemCell": "Stem Cell Supernatant Therapy",
-        "vitaminC": "High-Dose Vitamin C IV"
-      }
+      "description": "\"Aging is a treatable disease\"—guided by this belief, we support the health and beauty of business leaders with cutting-edge preventive and aesthetic medicine."
     },
-    "external": {
-      "title": "Aesthetic Medicine",
-      "items": {
-        "potenza": "POTENZA",
-        "hifu": "HIFU",
-        "stellaM22": "Stella M22 (IPL)",
-        "mesonaJ": "Mesona-J"
-      }
+    "corporate": {
+      "title": "Corporate Services",
+      "description": "We provide corporate wellness services for executives and their families."
     }
   },
   "doctors": {
     "title": "Our Doctors",
+    "subtitle": "Medical Authority",
     "tenma": {
       "name": "Dr. Jin Tenma",
-      "title": "Director",
-      "specialty": "Lifestyle Disease Specialist"
+      "role": "Representative",
+      "title": "Board Director, Tenma Hospital Group",
+      "credentials": [
+        "Diabetes Specialist",
+        "Cardiovascular Specialist",
+        "Digestive Disease Specialist",
+        "Japan Boxing Commission Licensed Physician"
+      ],
+      "description": "As a board director of the Tenma Hospital Group with over 50 facilities across Osaka, Hyogo, and Tokushima, dedicated to prevention and treatment of lifestyle diseases."
     },
     "fujioka": {
       "name": "Dr. Tatsuya Fujioka",
-      "title": "Vice Director",
-      "specialty": "Hematology & Regenerative Medicine Specialist"
+      "role": "Director",
+      "title": "MD, PhD",
+      "credentials": [
+        "Hematology Specialist",
+        "Regenerative Medicine Specialist",
+        "iPS Cell Research Expert",
+        "Cellular Therapy Specialist"
+      ],
+      "description": "A specialist in hematology and regenerative medicine, at the forefront of iPS cell research and cellular therapy."
+    }
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "Bio-Hacking Menu",
+    "internal": {
+      "title": "Internal Medicine & IV Therapy",
+      "subtitle": "Internal Care",
+      "items": {
+        "nad": {
+          "name": "NAD+ IV Therapy",
+          "description": "Promotes energy production and anti-oxidation",
+          "duration": "60 min",
+          "benefit": "Cellular rejuvenation"
+        },
+        "stemCell": {
+          "name": "Stem Cell Supernatant Therapy",
+          "description": "Advanced cellular therapy for anti-aging",
+          "duration": "30 min",
+          "benefit": "Tissue regeneration"
+        },
+        "vitaminC": {
+          "name": "High-Dose Vitamin C IV",
+          "description": "Health promotion and immune support",
+          "duration": "60 min",
+          "benefit": "Immune boost & skin health"
+        },
+        "glutathione": {
+          "name": "Glutathione IV",
+          "description": "1,200mg–1,800mg for detox and skin brightening",
+          "duration": "30 min",
+          "benefit": "Detox & brightening"
+        },
+        "myers": {
+          "name": "Myers' Cocktail",
+          "description": "Multivitamin and mineral therapy for chronic fatigue",
+          "duration": "30 min",
+          "benefit": "Energy restoration"
+        }
+      }
+    },
+    "external": {
+      "title": "Aesthetic Medicine",
+      "subtitle": "External Care",
+      "items": {
+        "potenza": {
+          "name": "POTENZA",
+          "description": "Needle RF and Diamond tip for skin tightening",
+          "duration": "45 min",
+          "benefit": "Skin tightening"
+        },
+        "hifu": {
+          "name": "HIFU",
+          "description": "500 shots targeting SMAS layer for non-surgical lifting",
+          "duration": "60 min",
+          "benefit": "Non-surgical lift"
+        },
+        "stellaM22": {
+          "name": "Stella M22 (IPL)",
+          "description": "Photofacial for skin tone and redness improvement",
+          "duration": "30 min",
+          "benefit": "Tone correction"
+        },
+        "mesonaJ": {
+          "name": "Mesona-J",
+          "description": "Transdermal delivery of collagen and placenta",
+          "duration": "45 min",
+          "benefit": "Firmness & glow"
+        }
+      }
     }
   },
   "facility": {
     "title": "Facility",
+    "subtitle": "Facility Experience",
     "vipLounge": {
       "title": "VIP Lounge",
-      "description": "Private space accommodating up to 7 guests"
+      "description": "Private space accommodating up to 7 guests. Suitable for business meetings."
     },
     "ivRoom": {
-      "title": "IV Treatment Rooms",
-      "description": "Fully private rooms dedicated to IV therapy"
+      "title": "Private IV Rooms",
+      "description": "Fully private rooms dedicated exclusively to IV therapy."
     },
     "airPurification": {
+      "title": "nanoe X Air Purification",
+      "description": "All rooms equipped with nanoe X. Maintaining a consistently clean environment."
+    },
+    "environment": {
       "title": "Air Purification",
-      "description": "100% nanoe X purified environment"
+      "description": "100% nanoe X purified medical environment"
     }
   },
   "contact": {
     "title": "Contact",
-    "subtitle": "Referral Only",
-    "description": "Our clinic operates on a referral-only basis. Please contact us through the form below.",
-    "form": {
-      "name": "Name",
-      "email": "Email",
-      "phone": "Phone",
-      "message": "Message",
-      "submit": "Submit"
-    }
+    "subtitle": "Executive Inquiry",
+    "status": "Referral-Only | Reservation-Only",
+    "description": "Our clinic operates on a referral-only, reservation-only basis. Please contact us through our official LINE.",
+    "lineButton": "Contact via Official LINE",
+    "note": "Please provide your referrer's name"
   },
   "footer": {
     "copyright": "© 2024 CULTI Re FINE. All rights reserved.",
     "privacy": "Privacy Policy",
-    "terms": "Terms of Service"
+    "terms": "Terms of Service",
+    "group": "Tenma Hospital Group"
   },
   "common": {
     "learnMore": "Learn More",
-    "backToTop": "Back to Top"
+    "backToTop": "Back to Top",
+    "duration": "Duration",
+    "benefit": "Benefit"
   }
 }

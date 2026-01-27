@@ -1,12 +1,13 @@
 {
   "metadata": {
     "title": "CULTI Re FINE | 先进预防医学与医美",
-    "description": "仅限推荐制的私人诊所。由拥有50年历史的天马医院集团提供的高端医疗服务。"
+    "description": "仅限推荐制、仅限预约制的私人诊所。由拥有50年历史的天马医院集团提供的高端医疗服务。"
   },
   "brand": {
     "name": "CULTI Re FINE",
     "tagline": "Now Exclusive, Future Standard.",
-    "philosophy": "衰老是一种可治疗的疾病。"
+    "philosophy": "衰老是一种可治疗的疾病。",
+    "status": "仅限推荐制 | 仅限预约制"
   },
   "navigation": {
     "home": "首页",
@@ -20,86 +21,160 @@
   "hero": {
     "title": "Now Exclusive,",
     "titleAccent": "Future Standard.",
-    "subtitle": "先进预防医学与医美",
-    "description": "仅限推荐制的私人诊所。以尖端医疗守护精英人士的健康与美丽。",
-    "cta": "联系我们"
+    "subtitle": "企业家的全新健康标准",
+    "description": "今日的专属，明日的常态。在我们的推荐制私人诊所，体验尖端的预防医学与医美服务。",
+    "cta": "联系我们",
+    "scroll": "滚动"
   },
   "about": {
     "title": "天马医院集团50年历史",
-    "heritage": "在日本及东南亚拥有50多家医疗机构",
-    "environment": "100% nanoe X 空气净化环境",
+    "heritage": "在大阪、神户、德岛拥有50多家医疗机构",
+    "environment": "全部房间配备 nanoe X 空气净化",
     "philosophy": {
       "title": "我们的理念",
-      "description": "衰老是一种可治疗的疾病——秉持这一信念，我们提供最尖端的预防医学与医美服务。"
-    }
-  },
-  "services": {
-    "title": "服务项目",
-    "internal": {
-      "title": "内科·预防医学",
-      "items": {
-        "nad": "NAD+ 点滴疗法",
-        "stemCell": "干细胞上清液疗法",
-        "vitaminC": "高浓度维生素C点滴"
-      }
+      "description": "「衰老是一种可治疗的疾病」——秉持这一信念，我们以尖端的预防医学与医美服务，守护企业家的健康与美丽。"
     },
-    "external": {
-      "title": "医美服务",
-      "items": {
-        "potenza": "POTENZA",
-        "hifu": "HIFU（超声刀）",
-        "stellaM22": "Stella M22（IPL）",
-        "mesonaJ": "Mesona-J"
-      }
+    "corporate": {
+      "title": "企业服务",
+      "description": "为企业家及其家人提供企业健康管理服务。"
     }
   },
   "doctors": {
     "title": "医师团队",
+    "subtitle": "Medical Authority",
     "tenma": {
       "name": "天马 仁 医师",
-      "title": "院长",
-      "specialty": "生活习惯病专家"
+      "role": "代表",
+      "title": "天马医院集团 理事",
+      "credentials": [
+        "糖尿病专家",
+        "心血管专家",
+        "消化系统专家",
+        "日本拳击委员会认证医师"
+      ],
+      "description": "作为天马医院集团的理事，在大阪、神户、德岛拥有50多家医疗机构，致力于生活习惯病的预防和治疗。"
     },
     "fujioka": {
       "name": "藤冈 达也 医师",
-      "title": "副院长",
-      "specialty": "血液内科·再生医学专家"
+      "role": "院长",
+      "title": "医学博士",
+      "credentials": [
+        "血液内科专家",
+        "再生医学专家",
+        "iPS细胞研究专家",
+        "细胞治疗专家"
+      ],
+      "description": "血液内科和再生医学专家，在iPS细胞研究和细胞治疗领域处于前沿。"
+    }
+  },
+  "services": {
+    "title": "服务项目",
+    "subtitle": "Bio-Hacking Menu",
+    "internal": {
+      "title": "内科·点滴疗法",
+      "subtitle": "Internal Care",
+      "items": {
+        "nad": {
+          "name": "NAD+ 点滴疗法",
+          "description": "促进能量产生和抗氧化作用",
+          "duration": "60分钟",
+          "benefit": "细胞级年轻化"
+        },
+        "stemCell": {
+          "name": "干细胞上清液疗法",
+          "description": "先进的细胞疗法抗衰老",
+          "duration": "30分钟",
+          "benefit": "组织再生"
+        },
+        "vitaminC": {
+          "name": "高浓度维生素C点滴",
+          "description": "健康促进和免疫支持",
+          "duration": "60分钟",
+          "benefit": "免疫增强·美肌"
+        },
+        "glutathione": {
+          "name": "谷胱甘肽点滴",
+          "description": "1,200mg〜1,800mg配方，排毒美白",
+          "duration": "30分钟",
+          "benefit": "排毒·美白"
+        },
+        "myers": {
+          "name": "迈尔斯鸡尾酒",
+          "description": "多种维生素和矿物质疗法，改善慢性疲劳",
+          "duration": "30分钟",
+          "benefit": "恢复活力"
+        }
+      }
+    },
+    "external": {
+      "title": "医美服务",
+      "subtitle": "External Care",
+      "items": {
+        "potenza": {
+          "name": "POTENZA",
+          "description": "针头射频和钻石头紧致肌肤",
+          "duration": "45分钟",
+          "benefit": "紧致肌肤"
+        },
+        "hifu": {
+          "name": "HIFU（超声刀）",
+          "description": "500发针对SMAS层，非手术提升",
+          "duration": "60分钟",
+          "benefit": "非手术提升"
+        },
+        "stellaM22": {
+          "name": "Stella M22（IPL）",
+          "description": "光子嫩肤改善肤色和泛红",
+          "duration": "30分钟",
+          "benefit": "肤色改善"
+        },
+        "mesonaJ": {
+          "name": "Mesona-J",
+          "description": "胶原蛋白和胎盘的透皮导入",
+          "duration": "45分钟",
+          "benefit": "紧致·光泽"
+        }
+      }
     }
   },
   "facility": {
     "title": "设施介绍",
+    "subtitle": "Facility Experience",
     "vipLounge": {
       "title": "VIP贵宾室",
-      "description": "可容纳7人的私密空间"
+      "description": "可容纳7人的私密空间。也可用于商务会议。"
     },
     "ivRoom": {
-      "title": "点滴室",
-      "description": "完全独立的点滴专用房间"
+      "title": "完全独立点滴室",
+      "description": "完全确保隐私的点滴专用独立房间。"
     },
     "airPurification": {
-      "title": "空气净化",
-      "description": "100% nanoe X 净化环境"
+      "title": "nanoe X 空气净化",
+      "description": "全部房间配备 nanoe X。始终维持清洁环境。"
+    },
+    "environment": {
+      "title": "空气净化环境",
+      "description": "100% nanoe X 净化医疗环境"
     }
   },
   "contact": {
-    "title": "联系我们",
-    "subtitle": "仅限推荐制",
-    "description": "本诊所采用推荐制。如需预约或咨询，请通过以下方式联系我们。",
-    "form": {
-      "name": "姓名",
-      "email": "邮箱",
-      "phone": "电话",
-      "message": "留言内容",
-      "submit": "提交"
-    }
+    "title": "预约·咨询",
+    "subtitle": "Executive Inquiry",
+    "status": "仅限推荐制 | 仅限预约制",
+    "description": "本诊所采用推荐制、预约制。请通过官方LINE联系我们。",
+    "lineButton": "通过官方LINE咨询",
+    "note": "请告知您的推荐人姓名"
   },
   "footer": {
     "copyright": "© 2024 CULTI Re FINE. 版权所有。",
     "privacy": "隐私政策",
-    "terms": "服务条款"
+    "terms": "服务条款",
+    "group": "天马医院集团"
   },
   "common": {
     "learnMore": "了解更多",
-    "backToTop": "返回顶部"
+    "backToTop": "返回顶部",
+    "duration": "治疗时间",
+    "benefit": "功效"
   }
 }
