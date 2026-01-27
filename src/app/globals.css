@@ -1,0 +1,283 @@
+@import "tailwindcss";
+
+/**
+ * CULTI Re FINE - Design System CSS Variables
+ * "Silent Luxury" - Medical precision meets futuristic elegance
+ */
+
+/* ========================================
+   CSS Custom Properties (Design Tokens)
+   ======================================== */
+:root {
+  /* Primary - Emerald (Clinical Trust & Serenity) */
+  --color-emerald-50: #E8F0EF;
+  --color-emerald-100: #D1E1DF;
+  --color-emerald-200: #A3C3BF;
+  --color-emerald-300: #75A59F;
+  --color-emerald-400: #47877F;
+  --color-emerald-500: #2D5A54;
+  --color-emerald-600: #254A46;
+  --color-emerald-700: #1D3A37;
+  --color-emerald-800: #152A29;
+  --color-emerald-900: #0D1A1A;
+  --color-emerald-950: #060D0D;
+
+  /* Accent - Champagne Gold (Luxury & Prestige) */
+  --color-gold-50: #F9F6F1;
+  --color-gold-100: #F3EDE3;
+  --color-gold-200: #E7DBC7;
+  --color-gold-300: #DBC9AB;
+  --color-gold-400: #CFB78F;
+  --color-gold-500: #B89C72;
+  --color-gold-600: #9A7F5A;
+  --color-gold-700: #7C6248;
+  --color-gold-800: #5E4536;
+  --color-gold-900: #402824;
+  --color-gold-950: #211412;
+
+  /* Medical White (Purity & Clinical Environment) */
+  --color-medical-white: #F8F9FA;
+  --color-medical-light: #F1F3F5;
+  --color-medical-muted: #E9ECEF;
+  --color-medical-border: #DEE2E6;
+
+  /* Semantic Colors */
+  --background: var(--color-medical-white);
+  --foreground: var(--color-emerald-900);
+  --primary: var(--color-emerald-500);
+  --primary-foreground: var(--color-medical-white);
+  --accent: var(--color-gold-500);
+  --accent-foreground: var(--color-emerald-900);
+  --muted: var(--color-medical-muted);
+  --muted-foreground: #64748B;
+  --border: var(--color-medical-border);
+
+  /* Typography - Fonts loaded via link tags in layout.tsx */
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Spacing (Luxury - Generous Whitespace) */
+  --space-section-sm: 4rem;
+  --space-section-md: 6rem;
+  --space-section-lg: 8rem;
+  --space-section-xl: 10rem;
+
+  /* Transitions */
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slower: 800ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px -2px rgba(45, 90, 84, 0.08);
+  --shadow-md: 0 8px 24px -8px rgba(45, 90, 84, 0.12);
+  --shadow-lg: 0 16px 48px -12px rgba(45, 90, 84, 0.16);
+  --shadow-xl: 0 24px 64px -16px rgba(45, 90, 84, 0.20);
+  --shadow-gold: 0 0 32px -8px rgba(184, 156, 114, 0.3);
+}
+
+/* ========================================
+   Tailwind v4 Theme Configuration
+   ======================================== */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+
+  /* Brand Colors */
+  --color-emerald-50: var(--color-emerald-50);
+  --color-emerald-100: var(--color-emerald-100);
+  --color-emerald-200: var(--color-emerald-200);
+  --color-emerald-300: var(--color-emerald-300);
+  --color-emerald-400: var(--color-emerald-400);
+  --color-emerald-500: var(--color-emerald-500);
+  --color-emerald-600: var(--color-emerald-600);
+  --color-emerald-700: var(--color-emerald-700);
+  --color-emerald-800: var(--color-emerald-800);
+  --color-emerald-900: var(--color-emerald-900);
+  --color-emerald-950: var(--color-emerald-950);
+
+  --color-gold-50: var(--color-gold-50);
+  --color-gold-100: var(--color-gold-100);
+  --color-gold-200: var(--color-gold-200);
+  --color-gold-300: var(--color-gold-300);
+  --color-gold-400: var(--color-gold-400);
+  --color-gold-500: var(--color-gold-500);
+  --color-gold-600: var(--color-gold-600);
+  --color-gold-700: var(--color-gold-700);
+  --color-gold-800: var(--color-gold-800);
+  --color-gold-900: var(--color-gold-900);
+  --color-gold-950: var(--color-gold-950);
+
+  --color-medical-white: var(--color-medical-white);
+  --color-medical-light: var(--color-medical-light);
+  --color-medical-muted: var(--color-medical-muted);
+  --color-medical-border: var(--color-medical-border);
+
+  /* Fonts */
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.75;
+  min-height: 100vh;
+}
+
+/* ========================================
+   Typography Base
+   ======================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--color-emerald-900);
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; }
+h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; }
+h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); line-height: 1.25; }
+h4 { font-size: clamp(1.25rem, 2vw, 1.5rem); line-height: 1.4; }
+
+p {
+  font-family: var(--font-sans);
+  color: var(--muted-foreground);
+}
+
+/* ========================================
+   Selection & Focus
+   ======================================== */
+::selection {
+  background: var(--color-emerald-200);
+  color: var(--color-emerald-900);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold-500);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-emerald-500), var(--color-gold-500));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient-luxury {
+  background: linear-gradient(135deg, var(--color-emerald-500), var(--color-emerald-600));
+}
+
+.border-gradient {
+  border-image: linear-gradient(135deg, var(--color-emerald-500), var(--color-gold-500)) 1;
+}
+
+/* Gold accent line (used for premium sections) */
+.gold-accent {
+  position: relative;
+}
+
+.gold-accent::after {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 3rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-gold-500), transparent);
+}
+
+/* ========================================
+   Animation Classes
+   ======================================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+/* ========================================
+   Scrollbar Styling (Luxury)
+   ======================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-medical-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-emerald-300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-emerald-400);
+}

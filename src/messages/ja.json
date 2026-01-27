@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "title": "CULTI Re FINE | 先進予防医療・美容医療",
+    "description": "完全紹介制のプライベートクリニック。50年以上の歴史を持つ天馬病院グループが提供する、エグゼクティブ向け先進医療。"
+  },
+  "brand": {
+    "name": "CULTI Re FINE",
+    "tagline": "Now Exclusive, Future Standard.",
+    "philosophy": "老化は治療可能な疾患である"
+  },
+  "navigation": {
+    "home": "ホーム",
+    "about": "当院について",
+    "services": "診療内容",
+    "facility": "施設案内",
+    "doctors": "医師紹介",
+    "contact": "お問い合わせ",
+    "reservation": "ご予約"
+  },
+  "hero": {
+    "title": "Now Exclusive,",
+    "titleAccent": "Future Standard.",
+    "subtitle": "先進予防医療・美容医療",
+    "description": "完全紹介制のプライベートクリニック。エグゼクティブの健康と美を、最先端医療で支えます。",
+    "cta": "ご予約・お問い合わせ"
+  },
+  "about": {
+    "title": "天馬病院グループの50年",
+    "heritage": "日本・東南アジアで50以上の医療施設を展開",
+    "environment": "100% nanoe X 空気清浄環境",
+    "philosophy": {
+      "title": "私たちの理念",
+      "description": "老化は治療可能な疾患である—この信念のもと、最先端の予防医療と美容医療を提供します。"
+    }
+  },
+  "services": {
+    "title": "診療内容",
+    "internal": {
+      "title": "内科・予防医療",
+      "items": {
+        "nad": "NAD+ 点滴療法",
+        "stemCell": "幹細胞上清液療法",
+        "vitaminC": "高濃度ビタミンC点滴"
+      }
+    },
+    "external": {
+      "title": "美容医療",
+      "items": {
+        "potenza": "POTENZA（ポテンザ）",
+        "hifu": "HIFU（ハイフ）",
+        "stellaM22": "Stella M22（IPL）",
+        "mesonaJ": "メソナJ"
+      }
+    }
+  },
+  "doctors": {
+    "title": "医師紹介",
+    "tenma": {
+      "name": "天馬 仁",
+      "title": "院長",
+      "specialty": "生活習慣病専門"
+    },
+    "fujioka": {
+      "name": "藤岡 達也",
+      "title": "副院長",
+      "specialty": "血液内科・再生医療専門"
+    }
+  },
+  "facility": {
+    "title": "施設案内",
+    "vipLounge": {
+      "title": "VIPラウンジ",
+      "description": "最大7名様までご利用可能なプライベート空間"
+    },
+    "ivRoom": {
+      "title": "点滴ルーム",
+      "description": "完全個室の点滴専用ルーム"
+    },
+    "airPurification": {
+      "title": "空気清浄",
+      "description": "100% nanoe X による清浄な環境"
+    }
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "subtitle": "完全紹介制",
+    "description": "当院は完全紹介制となっております。ご予約・お問い合わせは下記よりお願いいたします。",
+    "form": {
+      "name": "お名前",
+      "email": "メールアドレス",
+      "phone": "電話番号",
+      "message": "お問い合わせ内容",
+      "submit": "送信する"
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 CULTI Re FINE. All rights reserved.",
+    "privacy": "プライバシーポリシー",
+    "terms": "利用規約"
+  },
+  "common": {
+    "learnMore": "詳しく見る",
+    "backToTop": "トップに戻る"
+  }
+}

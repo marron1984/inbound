@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "title": "CULTI Re FINE | 先进预防医学与医美",
+    "description": "仅限推荐制的私人诊所。由拥有50年历史的天马医院集团提供的高端医疗服务。"
+  },
+  "brand": {
+    "name": "CULTI Re FINE",
+    "tagline": "Now Exclusive, Future Standard.",
+    "philosophy": "衰老是一种可治疗的疾病。"
+  },
+  "navigation": {
+    "home": "首页",
+    "about": "关于我们",
+    "services": "服务项目",
+    "facility": "设施介绍",
+    "doctors": "医师团队",
+    "contact": "联系我们",
+    "reservation": "预约"
+  },
+  "hero": {
+    "title": "Now Exclusive,",
+    "titleAccent": "Future Standard.",
+    "subtitle": "先进预防医学与医美",
+    "description": "仅限推荐制的私人诊所。以尖端医疗守护精英人士的健康与美丽。",
+    "cta": "联系我们"
+  },
+  "about": {
+    "title": "天马医院集团50年历史",
+    "heritage": "在日本及东南亚拥有50多家医疗机构",
+    "environment": "100% nanoe X 空气净化环境",
+    "philosophy": {
+      "title": "我们的理念",
+      "description": "衰老是一种可治疗的疾病——秉持这一信念，我们提供最尖端的预防医学与医美服务。"
+    }
+  },
+  "services": {
+    "title": "服务项目",
+    "internal": {
+      "title": "内科·预防医学",
+      "items": {
+        "nad": "NAD+ 点滴疗法",
+        "stemCell": "干细胞上清液疗法",
+        "vitaminC": "高浓度维生素C点滴"
+      }
+    },
+    "external": {
+      "title": "医美服务",
+      "items": {
+        "potenza": "POTENZA",
+        "hifu": "HIFU（超声刀）",
+        "stellaM22": "Stella M22（IPL）",
+        "mesonaJ": "Mesona-J"
+      }
+    }
+  },
+  "doctors": {
+    "title": "医师团队",
+    "tenma": {
+      "name": "天马 仁 医师",
+      "title": "院长",
+      "specialty": "生活习惯病专家"
+    },
+    "fujioka": {
+      "name": "藤冈 达也 医师",
+      "title": "副院长",
+      "specialty": "血液内科·再生医学专家"
+    }
+  },
+  "facility": {
+    "title": "设施介绍",
+    "vipLounge": {
+      "title": "VIP贵宾室",
+      "description": "可容纳7人的私密空间"
+    },
+    "ivRoom": {
+      "title": "点滴室",
+      "description": "完全独立的点滴专用房间"
+    },
+    "airPurification": {
+      "title": "空气净化",
+      "description": "100% nanoe X 净化环境"
+    }
+  },
+  "contact": {
+    "title": "联系我们",
+    "subtitle": "仅限推荐制",
+    "description": "本诊所采用推荐制。如需预约或咨询，请通过以下方式联系我们。",
+    "form": {
+      "name": "姓名",
+      "email": "邮箱",
+      "phone": "电话",
+      "message": "留言内容",
+      "submit": "提交"
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 CULTI Re FINE. 版权所有。",
+    "privacy": "隐私政策",
+    "terms": "服务条款"
+  },
+  "common": {
+    "learnMore": "了解更多",
+    "backToTop": "返回顶部"
+  }
+}

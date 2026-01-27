@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "title": "CULTI Re FINE | Advanced Preventive & Aesthetic Medicine",
+    "description": "A referral-only private clinic. Advanced medical care for executives, backed by the 50-year history of the Tenma Hospital Group."
+  },
+  "brand": {
+    "name": "CULTI Re FINE",
+    "tagline": "Now Exclusive, Future Standard.",
+    "philosophy": "Aging is a treatable disease."
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "facility": "Facility",
+    "doctors": "Doctors",
+    "contact": "Contact",
+    "reservation": "Reservation"
+  },
+  "hero": {
+    "title": "Now Exclusive,",
+    "titleAccent": "Future Standard.",
+    "subtitle": "Advanced Preventive & Aesthetic Medicine",
+    "description": "A referral-only private clinic. Supporting executives' health and beauty with cutting-edge medicine.",
+    "cta": "Contact Us"
+  },
+  "about": {
+    "title": "50 Years of Tenma Hospital Group",
+    "heritage": "Over 50 medical facilities across Japan and Southeast Asia",
+    "environment": "100% nanoe X air purification environment",
+    "philosophy": {
+      "title": "Our Philosophy",
+      "description": "Aging is a treatable disease—guided by this belief, we provide cutting-edge preventive and aesthetic medicine."
+    }
+  },
+  "services": {
+    "title": "Services",
+    "internal": {
+      "title": "Internal Medicine & Prevention",
+      "items": {
+        "nad": "NAD+ IV Therapy",
+        "stemCell": "Stem Cell Supernatant Therapy",
+        "vitaminC": "High-Dose Vitamin C IV"
+      }
+    },
+    "external": {
+      "title": "Aesthetic Medicine",
+      "items": {
+        "potenza": "POTENZA",
+        "hifu": "HIFU",
+        "stellaM22": "Stella M22 (IPL)",
+        "mesonaJ": "Mesona-J"
+      }
+    }
+  },
+  "doctors": {
+    "title": "Our Doctors",
+    "tenma": {
+      "name": "Dr. Jin Tenma",
+      "title": "Director",
+      "specialty": "Lifestyle Disease Specialist"
+    },
+    "fujioka": {
+      "name": "Dr. Tatsuya Fujioka",
+      "title": "Vice Director",
+      "specialty": "Hematology & Regenerative Medicine Specialist"
+    }
+  },
+  "facility": {
+    "title": "Facility",
+    "vipLounge": {
+      "title": "VIP Lounge",
+      "description": "Private space accommodating up to 7 guests"
+    },
+    "ivRoom": {
+      "title": "IV Treatment Rooms",
+      "description": "Fully private rooms dedicated to IV therapy"
+    },
+    "airPurification": {
+      "title": "Air Purification",
+      "description": "100% nanoe X purified environment"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Referral Only",
+    "description": "Our clinic operates on a referral-only basis. Please contact us through the form below.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "submit": "Submit"
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 CULTI Re FINE. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "backToTop": "Back to Top"
+  }
+}
