@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { AnimatedSection, GoldDivider } from "@/components/ui/motion";
 import { fadeInUp, fadeIn } from "@/components/ui/motion";
+import { useLang, type Lang } from "@/lib/i18n";
 
 /* ========================================
    Types
@@ -91,23 +92,220 @@ const channels: { id: CommChannel; label: string; icon: React.ReactNode }[] = [
   },
 ];
 
-const channelPlaceholders: Record<CommChannel, string> = {
-  whatsapp: "Your WhatsApp number (e.g. +1 234 567 8900)",
-  wechat: "Your WeChat ID",
-  line: "Your LINE ID",
-  email: "Your email address",
+const channelPlaceholders: Record<Lang, Record<CommChannel, string>> = {
+  en: {
+    whatsapp: "Your WhatsApp number (e.g. +1 234 567 8900)",
+    wechat: "Your WeChat ID",
+    line: "Your LINE ID",
+    email: "Your email address",
+  },
+  ja: {
+    whatsapp: "WhatsApp番号（例：+81 90 1234 5678）",
+    wechat: "WeChat ID",
+    line: "LINE ID",
+    email: "メールアドレス",
+  },
+  zh: {
+    whatsapp: "您的WhatsApp号码（例：+86 138 0000 0000）",
+    wechat: "您的微信ID",
+    line: "您的LINE ID",
+    email: "您的邮箱地址",
+  },
 };
 
-const programOptions = [
-  "The Radiance — 1 Night / 2 Days",
-  "The Executive Protocol — 3 Nights / 4 Days",
-  "The Opus — 7 Nights / 8 Days",
-  "Adipose-Derived Stem Cell Therapy",
-  "NK Cell Immune Therapy",
-  "Fibroblast Cell Therapy",
-  "Micro CTC Cancer Screening",
-  "Not sure yet — I'd like guidance",
-];
+const programOptions: Record<Lang, string[]> = {
+  en: [
+    "The Radiance — 1 Night / 2 Days",
+    "The Executive Protocol — 3 Nights / 4 Days",
+    "The Opus — 7 Nights / 8 Days",
+    "Adipose-Derived Stem Cell Therapy",
+    "NK Cell Immune Therapy",
+    "Fibroblast Cell Therapy",
+    "Micro CTC Cancer Screening",
+    "Not sure yet — I'd like guidance",
+  ],
+  ja: [
+    "ザ・ラディアンス — 1泊2日",
+    "ザ・エグゼクティブ・プロトコル — 3泊4日",
+    "ザ・オーパス — 7泊8日",
+    "脂肪由来幹細胞治療",
+    "NK細胞免疫療法",
+    "線維芽細胞療法",
+    "マイクロCTCがんスクリーニング",
+    "まだ決めていません — ご相談希望",
+  ],
+  zh: [
+    "焕彩之旅 — 1晚2天",
+    "行政精英方案 — 3晚4天",
+    "至臻之旅 — 7晚8天",
+    "脂肪干细胞治疗",
+    "NK细胞免疫疗法",
+    "成纤维细胞疗法",
+    "微量CTC癌症筛查",
+    "尚未确定 — 希望获得指导",
+  ],
+};
+
+const formContent: Record<Lang, {
+  sectionLabel: string;
+  heading: string;
+  headingAccent: string;
+  description: string;
+  whatHappensNext: string;
+  steps: { step: string; text: string }[];
+  privacyTitle: string;
+  privacyText: string;
+  responseTime: string;
+  confidential: string;
+  fullNameLabel: string;
+  fullNamePlaceholder: string;
+  emailLabel: string;
+  emailPlaceholder: string;
+  channelLabel: string;
+  channelIdLabel: string;
+  arrivalLabel: string;
+  arrivalHint: string;
+  interestLabel: string;
+  interestPlaceholder: string;
+  goalsLabel: string;
+  goalsPlaceholder: string;
+  goalsHint: string;
+  submitButton: string;
+  submitHint: string;
+}> = {
+  en: {
+    sectionLabel: "Begin Your Private Consultation",
+    heading: "Your Journey Begins with",
+    headingAccent: "a Conversation",
+    description:
+      "This is not a form — it's the first step of your transformation. Share what matters to you, and our medical concierge will craft a program around your life, your goals, and your schedule.",
+    whatHappensNext: "What Happens Next",
+    steps: [
+      { step: "01", text: "A medical concierge contacts you within 12 hours via your preferred channel." },
+      { step: "02", text: "Together, we design a preliminary program around your wellness objectives." },
+      { step: "03", text: "You receive a detailed itinerary, treatment plan, and travel guidance." },
+    ],
+    privacyTitle: "Your Privacy, Our Promise",
+    privacyText:
+      "Your information is protected under international medical confidentiality standards. We operate in full compliance with HIPAA and GDPR guidelines. All communications are encrypted and handled exclusively by our medical concierge team — never shared with third parties.",
+    responseTime: "Response Time",
+    confidential: "Confidential",
+    fullNameLabel: "Full Name",
+    fullNamePlaceholder: "How should we address you?",
+    emailLabel: "Email Address",
+    emailPlaceholder: "For your consultation confirmation",
+    channelLabel: "How Would You Like Us to Reach You?",
+    channelIdLabel: "Your {channel} ID",
+    arrivalLabel: "Estimated Arrival in Japan",
+    arrivalHint: "Approximate is fine — we'll coordinate the details together.",
+    interestLabel: "Program of Interest",
+    interestPlaceholder: "Tell us what interests you",
+    goalsLabel: "Share Your Wellness Goals",
+    goalsPlaceholder:
+      "What brings you to us? Any specific concerns, past treatments, dietary requirements, or goals you'd like us to know about...",
+    goalsHint: "All medical information is treated with the strictest confidentiality.",
+    submitButton: "Begin My Consultation",
+    submitHint: "No commitment required. Your concierge will follow up within 12 hours.",
+  },
+  ja: {
+    sectionLabel: "プライベートカウンセリングを始める",
+    heading: "あなたの旅は",
+    headingAccent: "対話から始まります",
+    description:
+      "これは単なるフォームではありません — あなたの変革への第一歩です。大切なことを共有してください。私たちのメディカルコンシェルジュが、あなたの生活、目標、スケジュールに合わせたプログラムをお作りします。",
+    whatHappensNext: "今後の流れ",
+    steps: [
+      { step: "01", text: "12時間以内に、ご希望の連絡方法でメディカルコンシェルジュからご連絡いたします。" },
+      { step: "02", text: "ご一緒に、ウェルネス目標に沿った予備プログラムを設計します。" },
+      { step: "03", text: "詳細な行程、治療プラン、渡航ガイダンスをお届けします。" },
+    ],
+    privacyTitle: "プライバシー保護のお約束",
+    privacyText:
+      "お客様の情報は、国際的な医療機密基準のもと保護されています。HIPAAおよびGDPRガイドラインに完全に準拠して運営しています。すべての通信は暗号化され、メディカルコンシェルジュチームのみが取り扱います — 第三者と共有されることはありません。",
+    responseTime: "応答時間",
+    confidential: "完全機密",
+    fullNameLabel: "お名前",
+    fullNamePlaceholder: "お名前をお聞かせください",
+    emailLabel: "メールアドレス",
+    emailPlaceholder: "カウンセリング確認用",
+    channelLabel: "ご希望の連絡方法をお選びください",
+    channelIdLabel: "{channel} ID",
+    arrivalLabel: "来日予定日",
+    arrivalHint: "おおよそで構いません — 詳細は一緒に調整いたします。",
+    interestLabel: "ご関心のあるプログラム",
+    interestPlaceholder: "ご興味のあるプログラムをお選びください",
+    goalsLabel: "ウェルネスの目標",
+    goalsPlaceholder:
+      "お問い合わせの理由をお聞かせください。特定のお悩み、過去の治療歴、食事制限、目標など...",
+    goalsHint: "すべての医療情報は厳重な機密保持のもと取り扱われます。",
+    submitButton: "カウンセリングを始める",
+    submitHint: "ご予約の義務はありません。12時間以内にコンシェルジュからご連絡いたします。",
+  },
+  zh: {
+    sectionLabel: "开始您的私人咨询",
+    heading: "您的旅程始于",
+    headingAccent: "一次对话",
+    description:
+      "这不仅是一份表单 — 这是您蜕变之旅的第一步。请分享对您重要的事情，我们的医疗礼宾将围绕您的生活、目标和日程，量身定制专属方案。",
+    whatHappensNext: "接下来会发生什么",
+    steps: [
+      { step: "01", text: "医疗礼宾将在12小时内通过您首选的联系方式与您取得联系。" },
+      { step: "02", text: "我们将一起围绕您的健康目标设计初步方案。" },
+      { step: "03", text: "您将收到详细的行程安排、治疗计划和出行指南。" },
+    ],
+    privacyTitle: "您的隐私，我们的承诺",
+    privacyText:
+      "您的信息受国际医疗保密标准保护。我们完全遵循HIPAA和GDPR指南运营。所有通信均经加密处理，仅由我们的医疗礼宾团队处理 — 绝不与第三方共享。",
+    responseTime: "响应时间",
+    confidential: "完全保密",
+    fullNameLabel: "姓名",
+    fullNamePlaceholder: "请问如何称呼您？",
+    emailLabel: "电子邮箱",
+    emailPlaceholder: "用于咨询确认",
+    channelLabel: "您希望我们如何联系您？",
+    channelIdLabel: "您的{channel} ID",
+    arrivalLabel: "预计抵达日本的日期",
+    arrivalHint: "大致日期即可 — 我们会一起协调细节。",
+    interestLabel: "感兴趣的项目",
+    interestPlaceholder: "请告诉我们您感兴趣的内容",
+    goalsLabel: "分享您的健康目标",
+    goalsPlaceholder:
+      "是什么让您找到我们？任何特定的关注点、过去的治疗经历、饮食要求或目标...",
+    goalsHint: "所有医疗信息均以最严格的保密标准处理。",
+    submitButton: "开始我的咨询",
+    submitHint: "无需承诺。您的礼宾将在12小时内跟进。",
+  },
+};
+
+const thankYouContent: Record<Lang, {
+  heading: string;
+  message1: string;
+  hours: string;
+  message1After: string;
+  message2: string;
+}> = {
+  en: {
+    heading: "Thank you, {name}.",
+    message1: "Your private consultation request has been received. A dedicated medical concierge will reach out to you within",
+    hours: "12 hours",
+    message1After: "via your preferred channel.",
+    message2: "In the meantime, we're already preparing for your journey.",
+  },
+  ja: {
+    heading: "ありがとうございます、{name}様。",
+    message1: "プライベートカウンセリングのリクエストを承りました。専属のメディカルコンシェルジュが",
+    hours: "12時間以内",
+    message1After: "にご希望の連絡方法でご連絡いたします。",
+    message2: "それまでの間、すでにあなたの旅の準備を進めております。",
+  },
+  zh: {
+    heading: "感谢您，{name}。",
+    message1: "您的私人咨询请求已收到。我们的专属医疗礼宾将在",
+    hours: "12小时内",
+    message1After: "通过您首选的联系方式与您取得联系。",
+    message2: "在此期间，我们已开始为您的旅程做准备。",
+  },
+};
 
 /* ========================================
    Thank You Message Component
@@ -115,11 +313,14 @@ const programOptions = [
 function ThankYouMessage({
   name,
   onClose,
+  lang,
 }: {
   name: string;
   onClose: () => void;
+  lang: Lang;
 }) {
   const firstName = name.split(" ")[0] || name;
+  const t = thankYouContent[lang];
 
   return (
     <motion.div
@@ -175,35 +376,18 @@ function ThankYouMessage({
           </div>
         </div>
 
-        {/* English Message */}
+        {/* Localized Message */}
         <div className="text-center">
           <h3 className="font-serif text-2xl font-light tracking-wide text-text-dark">
-            Thank you, {firstName}.
+            {t.heading.replace("{name}", firstName)}
           </h3>
           <p className="mt-5 text-sm font-light leading-[1.9] text-text-body">
-            Your private consultation request has been received. A dedicated
-            medical concierge will reach out to you within{" "}
-            <span className="font-medium text-gold">12 hours</span> via your
-            preferred channel.
+            {t.message1}{" "}
+            <span className="font-medium text-gold">{t.hours}</span>{" "}
+            {t.message1After}
           </p>
           <p className="mt-3 text-sm font-light leading-[1.9] text-text-body">
-            In the meantime, we&apos;re already preparing for your journey.
-          </p>
-        </div>
-
-        {/* Divider */}
-        <div className="my-8 flex items-center justify-center gap-4">
-          <span className="h-px w-10 bg-gradient-to-r from-transparent to-gold/30" />
-          <span className="block h-1 w-1 rotate-45 bg-gold/40" />
-          <span className="h-px w-10 bg-gradient-to-l from-transparent to-gold/30" />
-        </div>
-
-        {/* Chinese Message */}
-        <div className="text-center">
-          <p className="text-sm font-light leading-[1.9] text-text-body/70">
-            感谢您，{firstName}。您的私人咨询请求已收到。我们的专属医疗管家将在
-            <span className="font-medium text-gold">12小时内</span>
-            通过您首选的联系方式与您取得联系。在此期间，我们已开始为您的旅程做准备。
+            {t.message2}
           </p>
         </div>
       </motion.div>
@@ -241,6 +425,8 @@ const inputStyles =
    Main ConciergeForm Component
    ======================================== */
 export default function ConciergeForm() {
+  const { lang } = useLang();
+  const t = formContent[lang];
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     email: "",
@@ -280,7 +466,7 @@ export default function ConciergeForm() {
             variants={fadeIn}
             className="mb-6 text-xs font-medium tracking-[0.3em] text-gold uppercase"
           >
-            Begin Your Private Consultation
+            {t.sectionLabel}
           </motion.p>
 
           <GoldDivider className="mb-12" />
@@ -289,17 +475,15 @@ export default function ConciergeForm() {
             variants={fadeInUp}
             className="font-serif text-[clamp(1.75rem,3.5vw,2.75rem)] font-light tracking-wide text-text-dark"
           >
-            Your Journey Begins with{" "}
-            <span className="italic text-gold">a Conversation</span>
+            {t.heading}{" "}
+            <span className="italic text-gold">{t.headingAccent}</span>
           </motion.h2>
 
           <motion.p
             variants={fadeInUp}
             className="mx-auto mt-8 max-w-2xl text-base font-light leading-relaxed text-text-body"
           >
-            This is not a form — it&apos;s the first step of your
-            transformation. Share what matters to you, and our medical concierge
-            will craft a program around your life, your goals, and your schedule.
+            {t.description}
           </motion.p>
         </AnimatedSection>
 
@@ -311,23 +495,10 @@ export default function ConciergeForm() {
               <motion.div variants={fadeInUp}>
                 {/* What to Expect */}
                 <h3 className="font-serif text-xl font-light tracking-wide text-text-dark">
-                  What Happens Next
+                  {t.whatHappensNext}
                 </h3>
                 <div className="mt-6 space-y-5">
-                  {[
-                    {
-                      step: "01",
-                      text: "A medical concierge contacts you within 12 hours via your preferred channel.",
-                    },
-                    {
-                      step: "02",
-                      text: "Together, we design a preliminary program around your wellness objectives.",
-                    },
-                    {
-                      step: "03",
-                      text: "You receive a detailed itinerary, treatment plan, and travel guidance.",
-                    },
-                  ].map((item) => (
+                  {t.steps.map((item) => (
                     <div key={item.step} className="flex gap-4">
                       <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center border border-gold/20 font-serif text-sm font-light text-gold">
                         {item.step}
@@ -361,14 +532,10 @@ export default function ConciergeForm() {
                   </svg>
                   <div>
                     <p className="text-[11px] font-medium tracking-[0.15em] text-gold uppercase">
-                      Your Privacy, Our Promise
+                      {t.privacyTitle}
                     </p>
                     <p className="mt-2 text-xs font-light leading-[1.8] text-text-muted">
-                      Your information is protected under international medical
-                      confidentiality standards. We operate in full compliance
-                      with HIPAA and GDPR guidelines. All communications are
-                      encrypted and handled exclusively by our medical concierge
-                      team — never shared with third parties.
+                      {t.privacyText}
                     </p>
                   </div>
                 </div>
@@ -384,7 +551,7 @@ export default function ConciergeForm() {
                     12h
                   </p>
                   <p className="mt-1 text-[10px] tracking-[0.15em] text-text-muted uppercase">
-                    Response Time
+                    {t.responseTime}
                   </p>
                 </div>
                 <div>
@@ -392,7 +559,7 @@ export default function ConciergeForm() {
                     100%
                   </p>
                   <p className="mt-1 text-[10px] tracking-[0.15em] text-text-muted uppercase">
-                    Confidential
+                    {t.confidential}
                   </p>
                 </div>
               </motion.div>
@@ -410,7 +577,7 @@ export default function ConciergeForm() {
               {/* Full Name */}
               <div>
                 <FormLabel htmlFor="fullName" required>
-                  Full Name
+                  {t.fullNameLabel}
                 </FormLabel>
                 <input
                   id="fullName"
@@ -418,7 +585,7 @@ export default function ConciergeForm() {
                   required
                   value={formData.fullName}
                   onChange={(e) => updateField("fullName", e.target.value)}
-                  placeholder="How should we address you?"
+                  placeholder={t.fullNamePlaceholder}
                   className={inputStyles}
                   autoComplete="name"
                 />
@@ -427,7 +594,7 @@ export default function ConciergeForm() {
               {/* Email */}
               <div>
                 <FormLabel htmlFor="email" required>
-                  Email Address
+                  {t.emailLabel}
                 </FormLabel>
                 <input
                   id="email"
@@ -435,7 +602,7 @@ export default function ConciergeForm() {
                   required
                   value={formData.email}
                   onChange={(e) => updateField("email", e.target.value)}
-                  placeholder="For your consultation confirmation"
+                  placeholder={t.emailPlaceholder}
                   className={inputStyles}
                   autoComplete="email"
                 />
@@ -444,7 +611,7 @@ export default function ConciergeForm() {
               {/* Communication Channel */}
               <div>
                 <FormLabel htmlFor="channel" required>
-                  How Would You Like Us to Reach You?
+                  {t.channelLabel}
                 </FormLabel>
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                   {channels.map((ch) => (
@@ -486,7 +653,7 @@ export default function ConciergeForm() {
                     transition={{ duration: 0.3, ease: luxuryEase }}
                   >
                     <FormLabel htmlFor="channelId" required>
-                      Your {channels.find((c) => c.id === formData.channel)?.label} ID
+                      {t.channelIdLabel.replace("{channel}", channels.find((c) => c.id === formData.channel)?.label || "")}
                     </FormLabel>
                     <input
                       id="channelId"
@@ -495,7 +662,7 @@ export default function ConciergeForm() {
                       value={formData.channelId}
                       onChange={(e) => updateField("channelId", e.target.value)}
                       placeholder={
-                        channelPlaceholders[formData.channel as CommChannel]
+                        channelPlaceholders[lang][formData.channel as CommChannel]
                       }
                       className={inputStyles}
                     />
@@ -506,7 +673,7 @@ export default function ConciergeForm() {
               {/* Arrival Date */}
               <div>
                 <FormLabel htmlFor="arrivalDate">
-                  Estimated Arrival in Japan
+                  {t.arrivalLabel}
                 </FormLabel>
                 <input
                   id="arrivalDate"
@@ -518,14 +685,14 @@ export default function ConciergeForm() {
                   }`}
                 />
                 <p className="mt-1.5 text-[11px] font-light text-text-muted/60">
-                  Approximate is fine — we&apos;ll coordinate the details together.
+                  {t.arrivalHint}
                 </p>
               </div>
 
               {/* Program Interest */}
               <div>
                 <FormLabel htmlFor="interest">
-                  Program of Interest
+                  {t.interestLabel}
                 </FormLabel>
                 <select
                   id="interest"
@@ -533,8 +700,8 @@ export default function ConciergeForm() {
                   onChange={(e) => updateField("interest", e.target.value)}
                   className={`${inputStyles} appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%238a8580%22%20d%3D%22M6%208L1%203h10z%22%2F%3E%3C%2Fsvg%3E')] bg-[position:right_16px_center] bg-no-repeat pr-10`}
                 >
-                  <option value="">Tell us what interests you</option>
-                  {programOptions.map((opt) => (
+                  <option value="">{t.interestPlaceholder}</option>
+                  {programOptions[lang].map((opt) => (
                     <option key={opt} value={opt}>
                       {opt}
                     </option>
@@ -545,7 +712,7 @@ export default function ConciergeForm() {
               {/* Wellness Goals */}
               <div>
                 <FormLabel htmlFor="wellnessGoals">
-                  Share Your Wellness Goals
+                  {t.goalsLabel}
                 </FormLabel>
                 <textarea
                   id="wellnessGoals"
@@ -554,12 +721,11 @@ export default function ConciergeForm() {
                   onChange={(e) =>
                     updateField("wellnessGoals", e.target.value)
                   }
-                  placeholder="What brings you to us? Any specific concerns, past treatments, dietary requirements, or goals you'd like us to know about..."
+                  placeholder={t.goalsPlaceholder}
                   className={`${inputStyles} resize-none`}
                 />
                 <p className="mt-1.5 text-[11px] font-light text-text-muted/60">
-                  All medical information is treated with the strictest
-                  confidentiality.
+                  {t.goalsHint}
                 </p>
               </div>
 
@@ -575,7 +741,7 @@ export default function ConciergeForm() {
                   }`}
                 >
                   <span className="relative z-10 flex items-center justify-center gap-3">
-                    Begin My Consultation
+                    {t.submitButton}
                     <svg
                       className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
                       fill="none"
@@ -592,8 +758,7 @@ export default function ConciergeForm() {
                   </span>
                 </button>
                 <p className="mt-4 text-center text-[11px] font-light text-text-muted/60">
-                  No commitment required. Your concierge will follow up within
-                  12 hours.
+                  {t.submitHint}
                 </p>
               </div>
             </motion.form>
@@ -607,6 +772,7 @@ export default function ConciergeForm() {
           <ThankYouMessage
             name={formData.fullName}
             onClose={() => setSubmitted(false)}
+            lang={lang}
           />
         )}
       </AnimatePresence>

@@ -1,3 +1,7 @@
+"use client";
+
+import { I18nProvider } from "@/lib/i18n";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import {
   Header,
   Hero,
@@ -11,7 +15,8 @@ import {
 
 export default function Home() {
   return (
-    <>
+    <I18nProvider>
+      <LanguageSwitcher />
       <Header />
       <main>
         <Hero />
@@ -22,6 +27,6 @@ export default function Home() {
         <ConciergeForm />
       </main>
       <Footer />
-    </>
+    </I18nProvider>
   );
 }

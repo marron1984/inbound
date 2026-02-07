@@ -1,17 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useRef, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { AnimatedSection, GoldDivider } from "@/components/ui/motion";
 import { fadeInUp, fadeIn } from "@/components/ui/motion";
+import { useLang } from "@/lib/i18n";
+import type { Lang } from "@/lib/i18n";
+import { images } from "@/lib/images";
 
 /* ========================================
    i18n Content Structure
    ======================================== */
-type Lang = "en" | "ja" | "zh";
-
 interface PackageContent {
   tier: string;
   name: string;
@@ -228,9 +229,6 @@ const i18n: Record<Lang, SectionContent> = {
   },
 };
 
-const langLabels: Record<Lang, string> = { en: "EN", ja: "JA", zh: "中文" };
-const langOrder: Lang[] = ["en", "ja", "zh"];
-
 /* ========================================
    Animation Variants
    ======================================== */
@@ -246,76 +244,8 @@ const cardVariants: Variants = {
 };
 
 /* ========================================
-   Floating Language Switcher
-   ======================================== */
-function FloatingLangSwitcher({
-  lang,
-  setLang,
-}: {
-  lang: Lang;
-  setLang: (l: Lang) => void;
-}) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div className="fixed right-6 top-1/2 z-40 -translate-y-1/2 md:right-8">
-      <motion.div
-        className="flex flex-col items-center gap-1"
-        initial={false}
-      >
-        {/* Toggle button */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="flex h-11 w-11 items-center justify-center border border-gold/30 bg-white-warm/95 text-xs font-medium tracking-wider text-gold shadow-lg backdrop-blur-md transition-all duration-300 hover:border-gold hover:bg-white-warm"
-          aria-label="Switch language"
-        >
-          {langLabels[lang]}
-        </button>
-
-        {/* Dropdown */}
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              initial={{ opacity: 0, scaleY: 0, originY: 0 }}
-              animate={{ opacity: 1, scaleY: 1 }}
-              exit={{ opacity: 0, scaleY: 0 }}
-              transition={{ duration: 0.25, ease: luxuryEase }}
-              className="mt-1 flex flex-col overflow-hidden border border-gold/20 bg-white-warm/98 shadow-xl backdrop-blur-md"
-            >
-              {langOrder
-                .filter((l) => l !== lang)
-                .map((l) => (
-                  <button
-                    key={l}
-                    onClick={() => {
-                      setLang(l);
-                      setOpen(false);
-                    }}
-                    className="px-4 py-2.5 text-xs font-medium tracking-wider text-text-body transition-colors hover:bg-gold/10 hover:text-gold"
-                  >
-                    {langLabels[l]}
-                  </button>
-                ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
-    </div>
-  );
-}
-
-/* ========================================
    Package Image Component
    ======================================== */
-const packageImages = {
-  suite:
-    "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80",
-  medical:
-    "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80",
-  vip:
-    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
-};
-
 function PackageImage({
   alt,
   variant,
@@ -326,7 +256,7 @@ function PackageImage({
   return (
     <div className="relative aspect-[16/10] overflow-hidden">
       <Image
-        src={packageImages[variant]}
+        src={images.packages[variant].src}
         alt={alt}
         fill
         className="object-cover"
@@ -491,7 +421,7 @@ function ScrollIndicator({
    Main PackageSelector Component
    ======================================== */
 export default function PackageSelector() {
-  const [lang, setLang] = useState<Lang>("en");
+  const { lang } = useLang();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeCard, setActiveCard] = useState(0);
 
@@ -522,9 +452,6 @@ export default function PackageSelector() {
         <div className="absolute left-0 top-0 h-full w-full bg-[radial-gradient(ellipse_at_20%_20%,rgba(176,144,99,0.05),transparent_60%)]" />
         <div className="absolute right-0 bottom-0 h-full w-full bg-[radial-gradient(ellipse_at_80%_80%,rgba(240,236,228,0.6),transparent_60%)]" />
       </div>
-
-      {/* Floating Language Switcher */}
-      <FloatingLangSwitcher lang={lang} setLang={setLang} />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-12">
         {/* Header */}
