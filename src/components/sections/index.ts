@@ -1,8 +1,8 @@
-export { Header } from "./Header";
-export { Hero } from "./Hero";
-export { About } from "./About";
-export { Doctors } from "./Doctors";
-export { Services } from "./Services";
-export { Facility } from "./Facility";
-export { Contact } from "./Contact";
-export { Footer } from "./Footer";
+export { default as Header } from "./Header";
+export { default as Hero } from "./Hero";
+export { default as Philosophy } from "./Philosophy";
+export { default as Pillars } from "./Pillars";
+export { default as PackageSelector } from "./PackageSelector";
+export { default as Treatments } from "./Treatments";
+export { default as ConciergeForm } from "./ConciergeForm";
+export { default as Footer } from "./Footer";

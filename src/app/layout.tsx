@@ -1,59 +1,46 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-/**
- * CULTI Re FINE - Root Layout
- *
- * Typography System:
- * - Serif: Playfair Display (Headlines - Elegance & Authority)
- * - Sans: Inter (Body - Clarity & Readability)
- *
- * Fonts are loaded via CSS @import for better resilience and flexibility
- * across different build environments.
- */
-
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#2D5A54",
+  themeColor: "#0c1220",
 };
 
 export const metadata: Metadata = {
   title: {
-    default: "CULTI Re FINE | 先進予防医療・美容医療",
-    template: "%s | CULTI Re FINE",
+    default: "Tashima Clinic — Regenerative Stay",
+    template: "%s | Tashima Clinic",
   },
   description:
-    "完全紹介制のプライベートクリニック。50年以上の歴史を持つ天馬病院グループが提供する、エグゼクティブ向け先進医療。Advanced preventive and aesthetic medicine for global executives.",
+    "Where science restores what time takes away. A curated fusion of luxury hospitality, precision nutrition, and regenerative medicine in the heart of Osaka.",
   keywords: [
-    "予防医療",
-    "美容医療",
-    "NAD+",
-    "幹細胞",
-    "HIFU",
-    "POTENZA",
-    "エグゼクティブ",
-    "プライベートクリニック",
-    "天馬病院",
-    "preventive medicine",
-    "aesthetic medicine",
-    "luxury clinic",
-    "Tokyo",
+    "regenerative medicine",
+    "medical tourism Japan",
+    "luxury wellness Osaka",
+    "stem cell therapy",
+    "NAD+ therapy",
+    "longevity",
+    "Tashima Clinic",
+    "DHP City Development",
+    "Kanoya",
+    "Japanese omotenashi",
+    "anti-aging",
+    "wellness retreat Japan",
   ],
-  authors: [{ name: "CULTI Re FINE" }],
+  authors: [{ name: "Tashima Clinic" }],
   openGraph: {
     type: "website",
-    locale: "ja_JP",
-    alternateLocale: ["en_US", "zh_CN", "zh_TW"],
-    siteName: "CULTI Re FINE",
-    title: "CULTI Re FINE | Now Exclusive, Future Standard.",
+    locale: "en_US",
+    siteName: "Tashima Clinic — Regenerative Stay",
+    title: "Where Science Restores What Time Takes Away",
     description:
-      "Advanced preventive and aesthetic medicine for global executives. 完全紹介制のプライベートクリニック。",
+      "A curated fusion of luxury hospitality, precision nutrition, and regenerative medicine in the heart of Osaka.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "CULTI Re FINE",
-    description: "Now Exclusive, Future Standard.",
+    title: "Tashima Clinic — Regenerative Stay",
+    description: "Where Science Restores What Time Takes Away.",
   },
   robots: {
     index: true,
@@ -67,18 +54,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Preconnect for Google Fonts performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        {/* Google Fonts - Playfair Display (Serif) & Inter (Sans) */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap"
           rel="stylesheet"
         />
       </head>

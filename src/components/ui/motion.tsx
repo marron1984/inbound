@@ -1,18 +1,17 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
-import { type ReactNode } from "react";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
+import type { ReactNode } from "react";
 
-// Luxury animation variants
+const luxuryEase: [number, number, number, number] = [0.4, 0, 0.2, 1];
+
 export const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 32 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.4, 0, 0.2, 1],
-    },
+    transition: { duration: 0.8, ease: luxuryEase },
   },
 };
 
@@ -20,21 +19,7 @@ export const fadeIn: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      duration: 0.6,
-      ease: [0.4, 0, 0.2, 1],
-    },
-  },
-};
-
-export const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
-    },
+    transition: { duration: 0.8, ease: luxuryEase },
   },
 };
 
@@ -43,10 +28,7 @@ export const scaleIn: Variants = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: {
-      duration: 0.5,
-      ease: [0.4, 0, 0.2, 1],
-    },
+    transition: { duration: 0.6, ease: luxuryEase },
   },
 };
 
@@ -55,10 +37,7 @@ export const slideInLeft: Variants = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.4, 0, 0.2, 1],
-    },
+    transition: { duration: 0.8, ease: luxuryEase },
   },
 };
 
@@ -67,42 +46,33 @@ export const slideInRight: Variants = {
   visible: {
     opacity: 1,
     x: 0,
+    transition: { duration: 0.8, ease: luxuryEase },
+  },
+};
+
+export const staggerContainer: Variants = {
+  hidden: {},
+  visible: {
     transition: {
-      duration: 0.8,
-      ease: [0.4, 0, 0.2, 1],
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
     },
   },
 };
 
-// Reusable animated section wrapper
-interface AnimatedSectionProps {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}
-
 export function AnimatedSection({
   children,
   className = "",
-  delay = 0,
-}: AnimatedSectionProps) {
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      variants={{
-        hidden: { opacity: 0, y: 40 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: {
-            duration: 0.8,
-            delay,
-            ease: [0.4, 0, 0.2, 1],
-          },
-        },
-      }}
+      viewport={{ once: true, margin: "-80px" }}
+      variants={staggerContainer}
       className={className}
     >
       {children}
@@ -110,49 +80,17 @@ export function AnimatedSection({
   );
 }
 
-// Gold accent divider
 export function GoldDivider({ className = "" }: { className?: string }) {
   return (
     <motion.div
-      initial={{ scaleX: 0 }}
-      whileInView={{ scaleX: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
-      className={`h-px bg-gradient-to-r from-transparent via-gold-500 to-transparent ${className}`}
-    />
+      variants={fadeIn}
+      className={`flex items-center justify-center gap-4 ${className}`}
+    >
+      <span className="h-px w-12 bg-gradient-to-r from-transparent to-gold" />
+      <span className="block h-1.5 w-1.5 rotate-45 bg-gold" />
+      <span className="h-px w-12 bg-gradient-to-l from-transparent to-gold" />
+    </motion.div>
   );
 }
 
-// Section header with subtitle
-interface SectionHeaderProps {
-  title: string;
-  subtitle?: string;
-  centered?: boolean;
-  className?: string;
-}
-
-export function SectionHeader({
-  title,
-  subtitle,
-  centered = true,
-  className = "",
-}: SectionHeaderProps) {
-  return (
-    <div className={`${centered ? "text-center" : ""} ${className}`}>
-      {subtitle && (
-        <motion.span
-          variants={fadeIn}
-          className="inline-block text-sm tracking-[0.2em] uppercase text-gold-600 mb-4"
-        >
-          {subtitle}
-        </motion.span>
-      )}
-      <motion.h2
-        variants={fadeInUp}
-        className="font-serif text-emerald-900 gold-accent inline-block"
-      >
-        {title}
-      </motion.h2>
-    </div>
-  );
-}
+export { motion };
