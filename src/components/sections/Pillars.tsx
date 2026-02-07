@@ -4,6 +4,121 @@ import { motion } from "framer-motion";
 import { AnimatedSection, GoldDivider } from "@/components/ui/motion";
 import { fadeInUp, fadeIn } from "@/components/ui/motion";
 
+/**
+ * IMAGE INTEGRATION GUIDE — Three Pillars
+ *
+ * Each pillar has a dedicated image placeholder.
+ * When assets are ready, add images to /public/ and use next/image.
+ *
+ * Pillar 01 — The Stay:
+ *   File:    /public/pillar-stay.jpg
+ *   Subject: Luxury hotel suite interior — biophilic design, warm lighting,
+ *            floor-to-ceiling windows overlooking Osaka at dusk
+ *   Style:   Warm, intimate, zen-modern
+ *   Aspect:  4:3 landscape
+ *
+ * Pillar 02 — The Nutrition:
+ *   File:    /public/pillar-nutrition.jpg
+ *   Subject: Kaiseki presentation on handcrafted ceramics — seasonal
+ *            Japanese ingredients, natural wood table, soft ambient light
+ *   Style:   Overhead or 45° angle, artisanal, organic textures
+ *   Aspect:  4:3 landscape
+ *
+ * Pillar 03 — The Medicine:
+ *   File:    /public/pillar-medicine.jpg
+ *   Subject: Clean, modern treatment room — IV therapy station, medical
+ *            equipment, calming interior with indirect lighting
+ *   Style:   Clinical precision meets spa serenity, no patients visible
+ *   Aspect:  4:3 landscape
+ */
+
+interface PillarImage {
+  label: string;
+  sublabel: string;
+  warmth: "warm" | "natural" | "clinical";
+}
+
+const pillarImages: PillarImage[] = [
+  {
+    label: "Luxury Suite Interior",
+    sublabel: "Biophilic Design · Circadian Lighting · Osaka Skyline",
+    warmth: "warm",
+  },
+  {
+    label: "Kaiseki Precision Nutrition",
+    sublabel: "Seasonal Terroir · Biomarker-Guided · Artisan Ceramics",
+    warmth: "natural",
+  },
+  {
+    label: "Regenerative Treatment Suite",
+    sublabel: "IV Therapy · Cell Culture Lab · Advanced Diagnostics",
+    warmth: "clinical",
+  },
+];
+
+function PillarImagePlaceholder({ image }: { image: PillarImage }) {
+  const gradients = {
+    warm: "from-[#2a1f14]/80 via-[#1a150f]/60 to-[#0f1d35]/70",
+    natural: "from-[#1a1f14]/80 via-[#151a0f]/60 to-[#0f2a1d]/70",
+    clinical: "from-[#0f1d35]/80 via-[#0f1628]/60 to-[#14202e]/70",
+  };
+
+  const accents = {
+    warm: "rgba(176,144,99,0.1)",
+    natural: "rgba(124,154,142,0.08)",
+    clinical: "rgba(15,40,71,0.15)",
+  };
+
+  return (
+    <div
+      className={`relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br ${gradients[image.warmth]}`}
+      role="img"
+      aria-label={image.label}
+    >
+      {/* Ambient light simulation */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `radial-gradient(ellipse at 30% 40%, ${accents[image.warmth]}, transparent 60%)`,
+        }}
+      />
+
+      {/* Window light streak (for suite) */}
+      {image.warmth === "warm" && (
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(176,144,99,0.06) 0%, transparent 40%)",
+          }}
+        />
+      )}
+
+      {/* Subtle horizon for depth */}
+      <div className="absolute bottom-[30%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/8 to-transparent" />
+
+      {/* Content */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+        <div className="mb-3 flex justify-center">
+          <div className="h-px w-10 bg-gold/25" />
+        </div>
+        <p className="text-[10px] font-medium tracking-[0.25em] text-gold/40 uppercase">
+          {image.label}
+        </p>
+        <p className="mt-2 max-w-[200px] text-[9px] font-light tracking-wider text-text-light/20">
+          {image.sublabel}
+        </p>
+        <div className="mt-3 flex justify-center">
+          <div className="h-px w-10 bg-gold/25" />
+        </div>
+      </div>
+
+      {/* Border frame effect */}
+      <div className="absolute inset-0 border border-gold/5" />
+    </div>
+  );
+}
+
 const pillars = [
   {
     number: "01",
@@ -84,15 +199,23 @@ export default function Pillars() {
         </AnimatedSection>
 
         {/* Pillars */}
-        <div className="space-y-20 md:space-y-32">
+        <div className="space-y-24 md:space-y-36">
           {pillars.map((pillar, index) => (
             <AnimatedSection key={pillar.number}>
               <div
-                className={`flex flex-col gap-12 md:gap-16 lg:flex-row lg:items-start ${
+                className={`flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-16 ${
                   index % 2 === 1 ? "lg:flex-row-reverse" : ""
                 }`}
               >
-                {/* Left / Content Side */}
+                {/* Image Side */}
+                <motion.div
+                  variants={fadeInUp}
+                  className="flex-shrink-0 lg:w-[420px] xl:w-[480px]"
+                >
+                  <PillarImagePlaceholder image={pillarImages[index]} />
+                </motion.div>
+
+                {/* Content Side */}
                 <div className="flex-1">
                   <motion.div variants={fadeInUp}>
                     {/* Number + Partner */}
@@ -122,29 +245,26 @@ export default function Pillars() {
                   >
                     {pillar.description}
                   </motion.p>
-                </div>
 
-                {/* Right / Detail Card */}
-                <motion.div
-                  variants={fadeInUp}
-                  className="flex-shrink-0 lg:w-[360px]"
-                >
-                  <div className="border border-gold/10 bg-midnight/40 p-8 backdrop-blur-sm">
-                    <p className="mb-6 text-[10px] font-medium tracking-[0.3em] text-text-muted uppercase">
-                      Key Elements
-                    </p>
-                    <ul className="space-y-4">
-                      {pillar.details.map((detail) => (
-                        <li key={detail} className="flex items-start gap-3">
-                          <span className="mt-2 block h-1 w-1 flex-shrink-0 rotate-45 bg-gold" />
-                          <span className="text-sm font-light leading-relaxed text-text-light/80">
-                            {detail}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
+                  {/* Detail Card */}
+                  <motion.div variants={fadeInUp} className="mt-8">
+                    <div className="border border-gold/10 bg-midnight/40 p-8 backdrop-blur-sm">
+                      <p className="mb-6 text-[10px] font-medium tracking-[0.3em] text-text-muted uppercase">
+                        Key Elements
+                      </p>
+                      <ul className="space-y-4">
+                        {pillar.details.map((detail) => (
+                          <li key={detail} className="flex items-start gap-3">
+                            <span className="mt-2 block h-1 w-1 flex-shrink-0 rotate-45 bg-gold" />
+                            <span className="text-sm font-light leading-relaxed text-text-light/80">
+                              {detail}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </motion.div>
+                </div>
               </div>
             </AnimatedSection>
           ))}
