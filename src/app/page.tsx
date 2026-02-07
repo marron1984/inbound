@@ -4,6 +4,7 @@ import {
   Philosophy,
   Pillars,
   Programs,
+  Treatments,
   Contact,
   Footer,
 } from "@/components/sections";
@@ -17,6 +18,7 @@ export default function Home() {
         <Philosophy />
         <Pillars />
         <Programs />
+        <Treatments />
         <Contact />
       </main>
       <Footer />

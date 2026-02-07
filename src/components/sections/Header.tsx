@@ -7,6 +7,7 @@ const navLinks = [
   { label: "Philosophy", href: "#philosophy" },
   { label: "The Three Pillars", href: "#pillars" },
   { label: "Programs", href: "#programs" },
+  { label: "Treatments", href: "#treatments" },
   { label: "Contact", href: "#contact" },
 ];
 
