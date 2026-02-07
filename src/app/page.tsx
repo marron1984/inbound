@@ -5,7 +5,7 @@ import {
   Pillars,
   PackageSelector,
   Treatments,
-  Contact,
+  ConciergeForm,
   Footer,
 } from "@/components/sections";
 
@@ -19,7 +19,7 @@ export default function Home() {
         <Pillars />
         <PackageSelector />
         <Treatments />
-        <Contact />
+        <ConciergeForm />
       </main>
       <Footer />
     </>

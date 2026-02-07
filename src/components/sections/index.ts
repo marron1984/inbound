@@ -4,5 +4,5 @@ export { default as Philosophy } from "./Philosophy";
 export { default as Pillars } from "./Pillars";
 export { default as PackageSelector } from "./PackageSelector";
 export { default as Treatments } from "./Treatments";
-export { default as Contact } from "./Contact";
+export { default as ConciergeForm } from "./ConciergeForm";
 export { default as Footer } from "./Footer";
