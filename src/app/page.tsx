@@ -3,6 +3,7 @@ import {
   Hero,
   Philosophy,
   Pillars,
+  Programs,
   Contact,
   Footer,
 } from "@/components/sections";
@@ -15,6 +16,7 @@ export default function Home() {
         <Hero />
         <Philosophy />
         <Pillars />
+        <Programs />
         <Contact />
       </main>
       <Footer />
