@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Variants } from "framer-motion";
@@ -304,48 +305,33 @@ function FloatingLangSwitcher({
 }
 
 /* ========================================
-   Image Placeholder Component
+   Package Image Component
    ======================================== */
-function ImagePlaceholder({
-  label,
+const packageImages = {
+  suite:
+    "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80",
+  medical:
+    "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80",
+  vip:
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
+};
+
+function PackageImage({
   alt,
   variant,
 }: {
-  label: string;
   alt: string;
   variant: "suite" | "medical" | "vip";
 }) {
-  const gradients = {
-    suite:
-      "from-[#f0e8d8] via-[#ebe3d3] to-[#e5dccb]",
-    medical:
-      "from-[#dce5ef] via-[#d6dfea] to-[#d0dae6]",
-    vip:
-      "from-[#ede4d4] via-[#e8dfd0] to-[#e3d9c8]",
-  };
-
   return (
-    <div
-      className={`relative flex aspect-[16/10] items-center justify-center overflow-hidden bg-gradient-to-br ${gradients[variant]}`}
-      role="img"
-      aria-label={alt}
-    >
-      {/* Decorative elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(176,144,99,0.06),transparent_70%)]" />
-      <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white/40 to-transparent" />
-
-      {/* Placeholder label */}
-      <div className="relative text-center">
-        <div className="mb-2 flex justify-center">
-          <div className="h-px w-8 bg-gold/30" />
-        </div>
-        <p className="text-[10px] font-medium tracking-[0.3em] text-gold/50 uppercase">
-          {label}
-        </p>
-        <div className="mt-2 flex justify-center">
-          <div className="h-px w-8 bg-gold/30" />
-        </div>
-      </div>
+    <div className="relative aspect-[16/10] overflow-hidden">
+      <Image
+        src={packageImages[variant]}
+        alt={alt}
+        fill
+        className="object-cover"
+      />
+      <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white-warm/60 to-transparent" />
     </div>
   );
 }
@@ -395,9 +381,8 @@ function PackageCard({
         </div>
       )}
 
-      {/* Image Placeholder */}
-      <ImagePlaceholder
-        label={pkg.imagePlaceholder}
+      {/* Package Image */}
+      <PackageImage
         alt={pkg.imageAlt}
         variant={imageVariant[index] ?? "suite"}
       />
