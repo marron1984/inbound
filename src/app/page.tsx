@@ -3,7 +3,7 @@ import {
   Hero,
   Philosophy,
   Pillars,
-  Programs,
+  PackageSelector,
   Treatments,
   Contact,
   Footer,
@@ -17,7 +17,7 @@ export default function Home() {
         <Hero />
         <Philosophy />
         <Pillars />
-        <Programs />
+        <PackageSelector />
         <Treatments />
         <Contact />
       </main>

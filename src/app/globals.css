@@ -22,6 +22,8 @@
   --color-gold-light: #c4a87c;
   --color-gold-dark: #97774e;
   --color-sage: #7c9a8e;
+  --color-trust-blue: #0f2847;
+  --color-trust-blue-light: #163460;
 
   /* Text Colors */
   --color-text-dark: #1a1a1a;
@@ -63,6 +65,8 @@
   --color-gold-light: #c4a87c;
   --color-gold-dark: #97774e;
   --color-sage: #7c9a8e;
+  --color-trust-blue: #0f2847;
+  --color-trust-blue-light: #163460;
 
   --color-text-dark: #1a1a1a;
   --color-text-body: #4a4a4a;
@@ -164,6 +168,19 @@ p {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 1; }
 }
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px -5px rgba(176, 144, 99, 0.3); }
+  50% { box-shadow: 0 0 35px -5px rgba(176, 144, 99, 0.5); }
+}
+
+.animate-glow {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* Hide scrollbar for package carousel */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 /* ========================================
    Scrollbar
