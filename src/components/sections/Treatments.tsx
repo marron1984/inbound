@@ -202,8 +202,8 @@ export default function Treatments() {
   const steps = journeySteps[lang];
 
   return (
-    <section id="treatments" className="relative bg-midnight py-28 md:py-36 lg:py-44">
-      <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-transparent to-charcoal/50" />
+    <section id="treatments" className="relative bg-charcoal py-28 md:py-36 lg:py-44">
+      <div className="absolute inset-0 bg-gradient-to-b from-midnight/30 via-transparent to-midnight/30" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-12">
         {/* Language Toggle */}
@@ -262,7 +262,7 @@ export default function Treatments() {
           {/* MHLW Compliance Badge */}
           <motion.div
             variants={fadeInUp}
-            className="mx-auto mt-10 max-w-2xl border border-gold/15 bg-midnight/60 px-8 py-5 backdrop-blur-sm"
+            className="mx-auto mt-10 max-w-2xl border border-gold/15 bg-midnight/40 px-8 py-5 backdrop-blur-sm"
           >
             <div className="flex items-center justify-center gap-3">
               <svg
@@ -417,7 +417,7 @@ export default function Treatments() {
                   >
                     {/* Step Number */}
                     <div className="flex flex-col items-center">
-                      <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center border border-gold/30 bg-midnight">
+                      <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center border border-gold/30 bg-charcoal">
                         <span className="font-serif text-lg font-light text-gold">
                           {step.step}
                         </span>

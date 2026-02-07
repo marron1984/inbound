@@ -7,29 +7,29 @@
    ======================================== */
 
 :root {
-  /* Deep Dark Palette */
-  --color-midnight: #0c1220;
-  --color-charcoal: #1a1f2e;
-  --color-deep: #111827;
+  /* Deep Dark Palette — used sparingly for contrast */
+  --color-midnight: #1a2332;
+  --color-charcoal: #2a3040;
+  --color-deep: #1f2937;
 
-  /* Warm Light Palette */
-  --color-ivory: #f7f5f0;
-  --color-cream: #ede8df;
+  /* Warm Light Palette — primary backgrounds */
+  --color-ivory: #f9f7f3;
+  --color-cream: #f0ece4;
   --color-white: #fdfcfa;
 
   /* Accent Colors */
-  --color-gold: #b09063;
-  --color-gold-light: #c4a87c;
-  --color-gold-dark: #97774e;
+  --color-gold: #a0804f;
+  --color-gold-light: #b89a6a;
+  --color-gold-dark: #87693d;
   --color-sage: #7c9a8e;
-  --color-trust-blue: #0f2847;
-  --color-trust-blue-light: #163460;
+  --color-trust-blue: #1e3a5f;
+  --color-trust-blue-light: #2a4d7a;
 
   /* Text Colors */
   --color-text-dark: #1a1a1a;
   --color-text-body: #4a4a4a;
   --color-text-muted: #8a8580;
-  --color-text-light: #e0dcd4;
+  --color-text-light: #d8d4cc;
   --color-text-on-dark: #f0ece4;
 
   /* Semantic */
@@ -53,25 +53,25 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --color-midnight: #0c1220;
-  --color-charcoal: #1a1f2e;
-  --color-deep: #111827;
+  --color-midnight: #1a2332;
+  --color-charcoal: #2a3040;
+  --color-deep: #1f2937;
 
-  --color-ivory: #f7f5f0;
-  --color-cream: #ede8df;
+  --color-ivory: #f9f7f3;
+  --color-cream: #f0ece4;
   --color-white-warm: #fdfcfa;
 
-  --color-gold: #b09063;
-  --color-gold-light: #c4a87c;
-  --color-gold-dark: #97774e;
+  --color-gold: #a0804f;
+  --color-gold-light: #b89a6a;
+  --color-gold-dark: #87693d;
   --color-sage: #7c9a8e;
-  --color-trust-blue: #0f2847;
-  --color-trust-blue-light: #163460;
+  --color-trust-blue: #1e3a5f;
+  --color-trust-blue-light: #2a4d7a;
 
   --color-text-dark: #1a1a1a;
   --color-text-body: #4a4a4a;
   --color-text-muted: #8a8580;
-  --color-text-light: #e0dcd4;
+  --color-text-light: #d8d4cc;
   --color-text-on-dark: #f0ece4;
 
   --font-serif: "Cormorant Garamond", Georgia, serif;
@@ -94,7 +94,7 @@ html {
 }
 
 body {
-  background: var(--color-ivory);
+  background: var(--color-white);
   color: var(--color-text-dark);
   font-family: var(--font-sans);
   font-size: 1rem;

@@ -5,9 +5,6 @@ import type { Variants } from "framer-motion";
 
 const luxuryEase: [number, number, number, number] = [0.4, 0, 0.2, 1];
 
-/* ========================================
-   Animation Variants
-   ======================================== */
 const containerVariants: Variants = {
   hidden: {},
   visible: {
@@ -54,9 +51,6 @@ const cardVariants: Variants = {
   },
 };
 
-/* ========================================
-   Three Pillars Bottom Cards Data
-   ======================================== */
 const pillarCards = [
   {
     id: "stay",
@@ -64,21 +58,8 @@ const pillarCards = [
     title: "Luxury Retreat",
     partner: "DHP City Development",
     description: "Curated sanctuaries designed for deep physiological rest.",
-    /**
-     * IMAGE PLACEHOLDER — Luxury Hotel Suite
-     *
-     * Free Stock Photo Search Queries:
-     *   - "luxury hotel suite osaka night view"
-     *   - "modern japanese hotel room floor to ceiling windows city"
-     *   - "zen luxury hotel interior warm lighting minimalist"
-     *   - "high end hotel suite biophilic design night skyline"
-     *
-     * File: /public/hero-card-stay.jpg
-     * Aspect: 16:9, minimum 800×450
-     * Style: Warm ambient lighting, zen-modern, dusk window view
-     */
-    gradient: "from-[#2a1f14]/70 via-[#1a150f]/50 to-[#0f1d35]/60",
-    accent: "rgba(176,144,99,0.08)",
+    gradient: "from-cream via-ivory to-white-warm",
+    borderAccent: "border-gold/15",
   },
   {
     id: "medical",
@@ -86,21 +67,8 @@ const pillarCards = [
     title: "Regenerative Science",
     partner: "Tashima Clinic",
     description: "Japan's most advanced cell therapy and longevity protocols.",
-    /**
-     * IMAGE PLACEHOLDER — Modern Medical Facility
-     *
-     * Free Stock Photo Search Queries:
-     *   - "modern medical clinic interior clean white minimalist"
-     *   - "luxury medical treatment room IV therapy"
-     *   - "advanced medical lab regenerative medicine"
-     *   - "clean clinical interior soft lighting medical equipment"
-     *
-     * File: /public/hero-card-medical.jpg
-     * Aspect: 16:9, minimum 800×450
-     * Style: Clinical precision, soft indirect light, no patients
-     */
-    gradient: "from-[#0f1d35]/70 via-[#0f1628]/50 to-[#14202e]/60",
-    accent: "rgba(15,40,71,0.12)",
+    gradient: "from-ivory via-cream to-white-warm",
+    borderAccent: "border-trust-blue/15",
   },
   {
     id: "nutrition",
@@ -108,133 +76,54 @@ const pillarCards = [
     title: "Precision Cuisine",
     partner: "Kanoya",
     description: "Biomarker-guided meals rooted in kaiseki tradition.",
-    /**
-     * IMAGE PLACEHOLDER — Artistic Japanese Meal
-     *
-     * Free Stock Photo Search Queries:
-     *   - "kaiseki japanese fine dining artistic plating"
-     *   - "luxury japanese cuisine ceramic plates overhead"
-     *   - "healthy japanese meal artistic presentation wooden table"
-     *   - "seasonal japanese food minimalist elegant plating"
-     *
-     * File: /public/hero-card-nutrition.jpg
-     * Aspect: 16:9, minimum 800×450
-     * Style: Overhead or 45°, artisan ceramics, natural textures
-     */
-    gradient: "from-[#1a1f14]/70 via-[#151a0f]/50 to-[#0f2a1d]/60",
-    accent: "rgba(124,154,142,0.08)",
+    gradient: "from-cream via-white-warm to-ivory",
+    borderAccent: "border-sage/20",
   },
 ];
 
-/**
- * Hero Section — Cinematic Full-Screen with Left-Aligned Copy
- *
- * HERO BACKGROUND IMAGE INTEGRATION:
- * Replace the CSS background layers with an actual photograph.
- *
- *   File:        /public/hero-osaka-dusk.jpg
- *   Subject:     Osaka skyline at dusk from luxury hotel suite
- *   Aspect:      21:9 (ultrawide cinematic)
- *   Resolution:  3840×1646 minimum (8K source preferred)
- *   Atmosphere:  Magic hour — soft orange horizon → deep blue sky
- *   Foreground:  Corner of luxury suite, champagne gold & wood accents
- *   Left Third:  Slightly darker — text overlay area
- *   Right Third: Osaka skyline with twinkling city lights
- *   Lighting:    Warm interior (2700K) vs cool exterior dusk
- *
- * Free Stock Photo Search Queries for Hero Background:
- *   - "osaka skyline dusk magic hour panoramic"
- *   - "luxury hotel window view city skyline sunset wide angle"
- *   - "floor to ceiling window hotel suite city night panorama"
- *   - "japanese city skyline golden hour from luxury interior"
- *
- * Integration steps:
- *   1. import Image from "next/image"
- *   2. Replace "Cinematic Background Layers" div with:
- *      <Image src="/hero-osaka-dusk.jpg" alt="Osaka skyline at dusk
- *        viewed from luxury suite" fill className="object-cover" priority />
- *   3. Keep "Cinematic Overlays" div for text readability
- */
 export default function Hero() {
   return (
     <section className="relative flex min-h-screen flex-col overflow-hidden">
-      {/* ====================================
-          Cinematic Background Layers
-          Simulates: Magic Hour Osaka Skyline
-          from Luxury Hotel Suite
-          ==================================== */}
+      {/* Luminous Background — Warm, bright, airy */}
       <div className="absolute inset-0">
-        {/* Layer 1 — Base: Deep night sky */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#070d1a] via-[#0a1628] to-[#0f1d35]" />
+        {/* Layer 1 — Warm white base */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#f5f1ea] via-[#faf7f2] to-[#f0ece4]" />
 
-        {/* Layer 2 — Magic hour horizon glow */}
+        {/* Layer 2 — Soft golden warmth from left */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to top, rgba(180,110,50,0.18) 0%, rgba(200,130,60,0.1) 15%, rgba(60,80,130,0.08) 35%, transparent 55%)",
+              "radial-gradient(ellipse at 15% 45%, rgba(176,144,99,0.1) 0%, transparent 50%)",
           }}
         />
 
-        {/* Layer 3 — Warm ambient from left (interior light spill) */}
+        {/* Layer 3 — Pale blue sky wash (upper right) */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse at 10% 55%, rgba(176,144,99,0.14) 0%, transparent 50%)",
+              "radial-gradient(ellipse at 75% 15%, rgba(195,215,235,0.2) 0%, transparent 50%)",
           }}
         />
 
-        {/* Layer 4 — Cool blue atmosphere (sky right side) */}
+        {/* Layer 4 — Pearlescent center sheen */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse at 80% 25%, rgba(15,40,71,0.45) 0%, transparent 55%)",
+              "linear-gradient(135deg, rgba(255,255,255,0.5) 0%, transparent 40%, rgba(255,252,245,0.3) 70%, transparent 100%)",
           }}
         />
 
-        {/* Layer 5 — Simulated city lights glow band */}
-        <div className="absolute bottom-[22%] left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold/10 to-transparent blur-sm" />
-        <div className="absolute bottom-[21%] left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-gold/6 to-transparent" />
+        {/* Layer 5 — Soft warm horizon line */}
+        <div className="absolute bottom-[30%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/8 to-transparent" />
 
-        {/* Layer 6 — Scattered ambient city lights */}
-        <div className="absolute bottom-[25%] left-[30%] h-1 w-1 rounded-full bg-gold/15 blur-[2px]" />
-        <div className="absolute bottom-[27%] left-[45%] h-0.5 w-0.5 rounded-full bg-white/10 blur-[1px]" />
-        <div className="absolute bottom-[23%] left-[60%] h-1 w-1 rounded-full bg-gold/10 blur-[2px]" />
-        <div className="absolute bottom-[26%] left-[75%] h-0.5 w-0.5 rounded-full bg-white/8 blur-[1px]" />
-        <div className="absolute bottom-[24%] left-[88%] h-1 w-1 rounded-full bg-gold/12 blur-[2px]" />
-
-        {/* Layer 7 — Interior warmth vignette */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse at 50% 40%, transparent 25%, rgba(7,13,26,0.55) 100%)",
-          }}
-        />
-
-        {/* Layer 8 — Left-side darkening for text readability */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(7,13,26,0.5) 0%, rgba(7,13,26,0.2) 40%, transparent 70%)",
-          }}
-        />
-
-        {/* Layer 9 — Bottom fade for pillar cards */}
-        <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-t from-[#0c1220]/95 via-[#0c1220]/60 to-transparent" />
+        {/* Layer 6 — Bottom gradient deepening for card area */}
+        <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-cream/80 via-cream/30 to-transparent" />
       </div>
 
-      {/* Cinematic Overlays (keep when using real photo) */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#070d1a]/30 via-transparent to-transparent" />
-      </div>
-
-      {/* ====================================
-          Main Content — Left-Aligned
-          ==================================== */}
+      {/* Main Content — Left-Aligned */}
       <div className="relative z-10 flex flex-1 flex-col justify-center">
         <motion.div
           variants={containerVariants}
@@ -250,16 +139,16 @@ export default function Hero() {
             Osaka, Japan — Regenerative Stay
           </motion.p>
 
-          {/* Gold accent line — left-aligned */}
+          {/* Gold accent line */}
           <motion.div
             variants={lineVariants}
             className="mb-10 h-px w-20 bg-gradient-to-r from-gold to-gold/20"
           />
 
-          {/* H1 — Left-aligned, two-line impact */}
+          {/* H1 */}
           <motion.h1
             variants={itemVariants}
-            className="max-w-3xl font-serif text-[clamp(2.25rem,5vw,4.25rem)] font-light leading-[1.1] tracking-wide text-text-on-dark"
+            className="max-w-3xl font-serif text-[clamp(2.25rem,5vw,4.25rem)] font-light leading-[1.1] tracking-wide text-text-dark"
           >
             The Science of Rebirth.
             <br />
@@ -269,24 +158,23 @@ export default function Hero() {
           {/* Sub-headline */}
           <motion.p
             variants={itemVariants}
-            className="mt-8 max-w-xl text-base font-light leading-[1.85] text-text-light/75 md:text-lg"
+            className="mt-8 max-w-xl text-base font-light leading-[1.85] text-text-body md:text-lg"
           >
             A bespoke journey through Japan&apos;s advanced regenerative
             medicine, luxury stays by DHP, and precision nutrition by Kanoya.
           </motion.p>
 
-          {/* Primary CTA — Glassmorphism Gold */}
+          {/* Primary CTA */}
           <motion.div variants={itemVariants} className="mt-12">
             <a
               href="#contact"
-              className="group relative inline-flex items-center gap-3 overflow-hidden border border-gold/40 bg-gold/[0.08] px-10 py-4 text-xs font-medium tracking-[0.2em] text-gold uppercase backdrop-blur-md transition-all duration-500 hover:border-gold/70 hover:bg-gold/[0.15] hover:shadow-[0_0_40px_-8px_rgba(176,144,99,0.35)]"
+              className="group relative inline-flex items-center gap-3 overflow-hidden border border-gold/40 bg-gold/[0.08] px-10 py-4 text-xs font-medium tracking-[0.2em] text-gold uppercase backdrop-blur-md transition-all duration-500 hover:border-gold/70 hover:bg-gold/[0.18] hover:shadow-[0_0_40px_-8px_rgba(176,144,99,0.25)]"
             >
-              {/* Glass highlight */}
               <span
                 className="pointer-events-none absolute inset-0 opacity-30"
                 style={{
                   background:
-                    "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.03) 100%)",
+                    "linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%, rgba(255,255,255,0.1) 100%)",
                 }}
               />
               <span className="relative">Request a Private Consultation</span>
@@ -308,10 +196,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* ====================================
-          Bottom Navigation — Three Pillar Cards
-          Glassmorphism design
-          ==================================== */}
+      {/* Bottom Navigation — Three Pillar Cards */}
       <motion.div
         variants={cardContainerVariants}
         initial="hidden"
@@ -322,37 +207,25 @@ export default function Hero() {
           {pillarCards.map((card) => (
             <motion.a
               key={card.id}
-              href={`#pillars`}
+              href="#pillars"
               variants={cardVariants}
               whileHover={{
                 y: -4,
                 transition: { duration: 0.3, ease: luxuryEase },
               }}
-              className="group relative overflow-hidden border border-white/[0.08] backdrop-blur-xl transition-all duration-500 hover:border-gold/25"
-              style={{
-                background:
-                  "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%)",
-              }}
+              className={`group relative overflow-hidden border ${card.borderAccent} bg-white-warm/80 shadow-sm backdrop-blur-xl transition-all duration-500 hover:border-gold/30 hover:shadow-md`}
             >
-              {/* Glass highlight on top edge */}
-              <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+              {/* Top gold accent line */}
+              <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
 
               {/* Image placeholder area */}
               <div
                 className={`relative h-32 overflow-hidden bg-gradient-to-br ${card.gradient} sm:h-36 lg:h-40`}
               >
-                {/* Ambient light */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: `radial-gradient(ellipse at 40% 40%, ${card.accent}, transparent 70%)`,
-                  }}
-                />
-                {/* Placeholder label */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
                     <div className="mx-auto mb-2 h-px w-6 bg-gold/20" />
-                    <p className="text-[9px] font-medium tracking-[0.3em] text-gold/30 uppercase">
+                    <p className="text-[9px] font-medium tracking-[0.3em] text-gold/40 uppercase">
                       {card.id === "stay"
                         ? "Hotel Suite"
                         : card.id === "medical"
@@ -362,31 +235,28 @@ export default function Hero() {
                     <div className="mx-auto mt-2 h-px w-6 bg-gold/20" />
                   </div>
                 </div>
-                {/* Bottom fade into card body */}
-                <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-[#0c1220]/80 to-transparent" />
               </div>
 
               {/* Card body */}
               <div className="p-5 sm:p-6">
-                {/* Label badge */}
-                <p className="mb-2 text-[10px] font-semibold tracking-[0.3em] text-gold/70 uppercase">
+                <p className="mb-2 text-[10px] font-semibold tracking-[0.3em] text-gold uppercase">
                   {card.label}
                 </p>
 
-                <h3 className="font-serif text-lg font-light tracking-wide text-text-on-dark transition-colors duration-300 group-hover:text-gold">
+                <h3 className="font-serif text-lg font-light tracking-wide text-text-dark transition-colors duration-300 group-hover:text-gold">
                   {card.title}
                 </h3>
 
-                <p className="mt-1 text-[10px] font-medium tracking-[0.15em] text-text-muted/60 uppercase">
+                <p className="mt-1 text-[10px] font-medium tracking-[0.15em] text-text-muted uppercase">
                   {card.partner}
                 </p>
 
-                <p className="mt-3 text-[13px] font-light leading-relaxed text-text-light/50">
+                <p className="mt-3 text-[13px] font-light leading-relaxed text-text-body/70">
                   {card.description}
                 </p>
 
                 {/* Explore arrow */}
-                <div className="mt-4 flex items-center gap-2 text-gold/40 transition-all duration-300 group-hover:gap-3 group-hover:text-gold/80">
+                <div className="mt-4 flex items-center gap-2 text-gold/50 transition-all duration-300 group-hover:gap-3 group-hover:text-gold">
                   <span className="text-[10px] font-medium tracking-[0.15em] uppercase">
                     Explore
                   </span>
@@ -405,15 +275,6 @@ export default function Hero() {
                   </svg>
                 </div>
               </div>
-
-              {/* Hover glow overlay */}
-              <div
-                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at 50% 0%, rgba(176,144,99,0.04) 0%, transparent 60%)",
-                }}
-              />
             </motion.a>
           ))}
         </div>
