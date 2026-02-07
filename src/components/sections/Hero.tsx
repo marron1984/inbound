@@ -1,158 +1,118 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import type { Variants } from "framer-motion";
 
-export function Hero() {
-  const t = useTranslations();
+const luxuryEase: [number, number, number, number] = [0.4, 0, 0.2, 1];
 
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.5,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 1, ease: luxuryEase },
+  },
+};
+
+const lineVariants: Variants = {
+  hidden: { scaleX: 0 },
+  visible: {
+    scaleX: 1,
+    transition: { duration: 1.2, ease: luxuryEase, delay: 0.3 },
+  },
+};
+
+export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-medical-white via-emerald-50/50 to-medical-light">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-          className="absolute -top-1/2 -right-1/4 w-[1000px] h-[1000px] rounded-full bg-gradient-to-br from-emerald-100/40 to-transparent blur-3xl"
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
-          className="absolute -bottom-1/4 -left-1/4 w-[800px] h-[800px] rounded-full bg-gradient-to-tr from-gold-100/30 to-transparent blur-3xl"
-        />
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(45,90,84,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(45,90,84,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-midnight">
+      {/* Atmospheric Background */}
+      <div className="absolute inset-0">
+        {/* Subtle gradient orbs */}
+        <div className="absolute left-1/4 top-1/4 h-[600px] w-[600px] rounded-full bg-gold/[0.03] blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 h-[500px] w-[500px] rounded-full bg-sage/[0.04] blur-[100px]" />
+        {/* Fine grain overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-midnight via-midnight/95 to-charcoal" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-32 text-center">
-        {/* Status badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-          className="mb-6"
+      {/* Content */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="relative z-10 mx-auto max-w-5xl px-6 text-center"
+      >
+        {/* Eyebrow */}
+        <motion.p
+          variants={itemVariants}
+          className="mb-8 text-xs font-medium tracking-[0.35em] text-gold uppercase"
         >
-          <span className="inline-block px-5 py-2.5 text-xs tracking-[0.15em] uppercase text-emerald-700 border border-emerald-200/60 rounded-full bg-white/60 backdrop-blur-sm shadow-luxury-sm">
-            {t("brand.status")}
-          </span>
-        </motion.div>
+          Osaka, Japan
+        </motion.p>
 
-        {/* Brand mark */}
+        {/* Gold Line */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
-          className="mb-10"
-        >
-          <span className="text-lg tracking-[0.25em] uppercase text-emerald-600 font-medium">
-            {t("brand.name")}
-          </span>
-        </motion.div>
+          variants={lineVariants}
+          className="mx-auto mb-10 h-px w-24 origin-center bg-gradient-to-r from-transparent via-gold to-transparent"
+        />
 
-        {/* Main headline */}
+        {/* H1 */}
         <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-          className="font-serif text-emerald-900 mb-8"
+          variants={itemVariants}
+          className="font-serif text-[clamp(2.5rem,5.5vw,4.5rem)] font-light leading-[1.1] tracking-wide text-text-on-dark"
         >
-          <span className="block text-display-lg md:text-display-xl leading-none">
-            {t("hero.title")}
-          </span>
-          <span className="block text-display-lg md:text-display-xl leading-none text-gradient mt-2">
-            {t("hero.titleAccent")}
-          </span>
+          Where Science Restores
+          <br />
+          <span className="italic text-gold">What Time Takes Away</span>
         </motion.h1>
 
-        {/* Subtitle */}
+        {/* Sub-headline */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
-          className="text-xl md:text-2xl text-emerald-700/90 max-w-2xl mx-auto mb-6 font-serif tracking-wide"
+          variants={itemVariants}
+          className="mx-auto mt-10 max-w-2xl text-base font-light leading-relaxed text-text-light/80 md:text-lg"
         >
-          {t("hero.subtitle")}
+          In the heart of Osaka, three masters of their craft converge — luxury
+          hospitality, precision nutrition, and regenerative medicine — to
+          create a stay that doesn&apos;t just rejuvenate the body, but
+          redefines what wellness means.
         </motion.p>
 
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          className="text-base md:text-lg text-slate-600 max-w-xl mx-auto mb-14 leading-relaxed"
-        >
-          {t("hero.description")}
-        </motion.p>
-
-        {/* CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
-        >
+        {/* CTA */}
+        <motion.div variants={itemVariants} className="mt-14 flex items-center justify-center gap-6">
           <a
-            href="#contact"
-            className="group relative inline-flex items-center gap-3 px-10 py-5 bg-emerald-500 text-white rounded-luxury overflow-hidden transition-all duration-500 hover:bg-emerald-600 hover:shadow-luxury-xl"
+            href="#pillars"
+            className="border border-gold/40 px-8 py-3.5 text-xs font-medium tracking-[0.2em] text-gold uppercase transition-all duration-500 hover:border-gold hover:bg-gold/10 hover:shadow-[0_0_30px_-8px_rgba(176,144,99,0.3)]"
           >
-            <span className="relative z-10 font-medium tracking-wide text-lg">
-              {t("hero.cta")}
-            </span>
-            <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1.5">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-emerald-500 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            Discover the Experience
           </a>
         </motion.div>
 
-        {/* Gold accent divider */}
+        {/* Scroll Indicator */}
         <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1.2, delay: 0.8, ease: [0.4, 0, 0.2, 1] }}
-          className="mt-20 mx-auto w-32 h-px bg-gradient-to-r from-transparent via-gold-500 to-transparent"
-        />
-
-        {/* Philosophy quote */}
-        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1, ease: [0.4, 0, 0.2, 1] }}
-          className="mt-10 text-base text-gold-600 italic tracking-wide font-serif"
+          transition={{ delay: 2, duration: 1 }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2"
         >
-          &ldquo;{t("brand.philosophy")}&rdquo;
-        </motion.p>
-      </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
-      >
-        <span className="text-xs tracking-[0.15em] uppercase text-emerald-400">
-          {t("hero.scroll")}
-        </span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-6 h-10 border-2 border-emerald-300/60 rounded-full flex justify-center pt-2"
-        >
-          <div className="w-1 h-2.5 bg-emerald-400 rounded-full" />
+          <div className="flex flex-col items-center gap-3">
+            <span className="text-[10px] font-light tracking-[0.3em] text-text-muted uppercase">
+              Scroll
+            </span>
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="h-8 w-px bg-gradient-to-b from-gold/60 to-transparent"
+            />
+          </div>
         </motion.div>
       </motion.div>
     </section>
