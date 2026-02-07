@@ -1,12 +1,22 @@
 "use client";
 
-import { useState } from "react";
 import { AnimatedSection, GoldDivider, motion } from "@/components/ui/motion";
 import { fadeInUp, fadeIn } from "@/components/ui/motion";
+import { useLang, type Lang } from "@/lib/i18n";
 
-type Lang = "en" | "zh";
-
-const content = {
+const content: Record<Lang, {
+  eyebrow: string;
+  heading: [string, string];
+  intro: string;
+  complianceBadge: string;
+  complianceNote: string;
+  treatmentsLabel: string;
+  journeyEyebrow: string;
+  journeyHeading: [string, string];
+  journeyIntro: string;
+  priceLabel: string;
+  learnMore: string;
+}> = {
   en: {
     eyebrow: "Regenerative Medicine",
     heading: ["Advanced Protocols,", "Japanese Precision"],
@@ -22,6 +32,22 @@ const content = {
       "Every regenerative protocol follows a meticulous, medically supervised process — ensuring safety, precision, and optimal outcomes at every stage.",
     priceLabel: "Starting from",
     learnMore: "Inquire About This Treatment",
+  },
+  ja: {
+    eyebrow: "再生医療",
+    heading: ["先進的プロトコル、", "日本の精密医療"],
+    intro:
+      "田島クリニックのすべての治療は、厚生労働省（MHLW）の厳格な監督のもとで行われています。当院の医師は、数十年にわたる臨床経験と日本が世界に誇る安全基準を組み合わせ、細胞レベルで信頼できる再生医療を提供いたします。",
+    complianceBadge: "厚生労働省認可施設",
+    complianceNote:
+      "すべての再生医療は、日本の「再生医療等の安全性の確保等に関する法律」に完全に準拠して実施されており、細胞加工、品質管理、患者安全の最高基準を確保しています。",
+    treatmentsLabel: "治療プロトコル",
+    journeyEyebrow: "治療の流れ",
+    journeyHeading: ["カウンセリングから", "生まれ変わりへ"],
+    journeyIntro:
+      "すべての再生医療プロトコルは、綿密で医学的に監督されたプロセスに従い、各段階で安全性、精度、最適な結果を確保いたします。",
+    priceLabel: "料金目安",
+    learnMore: "この治療について問い合わせる",
   },
   zh: {
     eyebrow: "再生医疗",
@@ -41,7 +67,15 @@ const content = {
   },
 };
 
-const treatments = {
+const treatments: Record<Lang, {
+  id: string;
+  name: string;
+  tagline: string;
+  cells: string;
+  price: string;
+  description: string;
+  targets: string[];
+}[]> = {
   en: [
     {
       id: "stem-cell",
@@ -82,6 +116,48 @@ const treatments = {
       description:
         "This advanced liquid biopsy detects circulating tumor cells in the bloodstream — identifying cancer risks at the earliest possible stage, often years before conventional imaging. Knowledge is the most powerful medicine.",
       targets: ["Ultra-early cancer detection", "Non-invasive liquid biopsy", "Comprehensive risk profiling", "Peace of mind through data"],
+    },
+  ],
+  ja: [
+    {
+      id: "stem-cell",
+      name: "脂肪由来幹細胞治療",
+      tagline: "細胞レベルからの全身再生",
+      cells: "1回あたり1.5億〜2億個の細胞",
+      price: "¥3,200,000 – ¥4,600,000+",
+      description:
+        "ご自身の脂肪組織から採取し、厚生労働省認可の実験室条件下で培養・増殖させた間葉系幹細胞が、炎症、組織損傷、全身の老化をターゲットにします。再生医療による長寿の要となる治療です。",
+      targets: ["全身のアンチエイジング", "組織・関節の再生", "慢性炎症の改善", "臓器機能の最適化"],
+    },
+    {
+      id: "nk-cell",
+      name: "NK細胞免疫療法",
+      tagline: "精密に設計されたがん予防",
+      cells: "高濃度活性化NK細胞",
+      price: "¥600,000+",
+      description:
+        "ナチュラルキラー細胞をご自身の血液から分離し、管理された条件下で活性化・増殖させた後、体内に戻すことで自然免疫の監視機能を強化します。悪性腫瘍に対する積極的かつエビデンスに基づく防御策です。",
+      targets: ["がんリスクの低減", "免疫システムの強化", "治療後の免疫回復", "予防的な健康最適化"],
+    },
+    {
+      id: "fibroblast",
+      name: "線維芽細胞治療",
+      tagline: "内側から肌を再生する",
+      cells: "1回あたり6億〜12億個の細胞",
+      price: "¥1,700,000 – ¥2,000,000",
+      description:
+        "コラーゲン、エラスチン、ヒアルロン酸を生み出すご自身の線維芽細胞を大量に培養し、対象部位に再注入します。美容的な表面処理ではなく、肌本来の生物学的な若返りを実現します。",
+      targets: ["深いしわの改善", "肌の弾力性回復", "自然なコラーゲン再生", "長期的な顔の若返り"],
+    },
+    {
+      id: "micro-ctc",
+      name: "マイクロCTCがんスクリーニング",
+      tagline: "従来の検査では発見できないものを検出",
+      cells: "循環腫瘍細胞解析",
+      price: "¥220,000",
+      description:
+        "この先進的なリキッドバイオプシーは、血流中の循環腫瘍細胞を検出し、従来の画像診断よりも数年早い段階でがんリスクを特定します。知識こそが最も強力な医療です。",
+      targets: ["超早期がん検出", "非侵襲的リキッドバイオプシー", "包括的リスクプロファイリング", "データによる安心"],
     },
   ],
   zh: [
@@ -128,7 +204,11 @@ const treatments = {
   ],
 };
 
-const journeySteps = {
+const journeySteps: Record<Lang, {
+  step: string;
+  title: string;
+  description: string;
+}[]> = {
   en: [
     {
       step: "01",
@@ -159,6 +239,38 @@ const journeySteps = {
       title: "Follow-Up & Longevity Plan",
       description:
         "Post-treatment monitoring, biomarker re-evaluation, and a personalized maintenance roadmap ensure lasting results long after your return home.",
+    },
+  ],
+  ja: [
+    {
+      step: "01",
+      title: "リモートカウンセリング",
+      description:
+        "田島クリニックの専門医による包括的な医療面談を行います。健康歴、治療目標、バイオマーカーを評価し、オーダーメイドの治療プロトコルを設計します。",
+    },
+    {
+      step: "02",
+      title: "来院・細胞採取",
+      description:
+        "大阪にご到着後、低侵襲の処置により治療に必要な細胞を採取します。脂肪組織、血液、皮膚細胞など、治療内容に応じて採取します。",
+    },
+    {
+      step: "03",
+      title: "細胞培養・調製",
+      description:
+        "厚生労働省認可の実験室で、無菌・管理された条件下にてお客様の細胞を培養・増殖します。幹細胞治療および線維芽細胞治療では、このプロセスに3〜6週間を要します。",
+    },
+    {
+      step: "04",
+      title: "治療の実施",
+      description:
+        "培養した細胞は、田島クリニックの医師によって精密かつ的確なプロトコルに従い投与されます。治療効果の最大化と患者様の快適さを両立します。",
+    },
+    {
+      step: "05",
+      title: "アフターフォロー・長寿プラン",
+      description:
+        "治療後のモニタリング、バイオマーカーの再評価、そして個別の維持管理ロードマップにより、ご帰国後も長期にわたる効果を確保いたします。",
     },
   ],
   zh: [
@@ -196,7 +308,7 @@ const journeySteps = {
 };
 
 export default function Treatments() {
-  const [lang, setLang] = useState<Lang>("en");
+  const { lang } = useLang();
   const t = content[lang];
   const treatmentList = treatments[lang];
   const steps = journeySteps[lang];
@@ -206,32 +318,6 @@ export default function Treatments() {
       <div className="absolute inset-0 bg-gradient-to-b from-midnight/30 via-transparent to-midnight/30" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-12">
-        {/* Language Toggle */}
-        <div className="mb-16 flex justify-center">
-          <div className="inline-flex border border-gold/20">
-            <button
-              onClick={() => setLang("en")}
-              className={`px-6 py-2.5 text-xs font-medium tracking-[0.15em] uppercase transition-all duration-300 ${
-                lang === "en"
-                  ? "bg-gold text-midnight"
-                  : "text-text-light/60 hover:text-gold"
-              }`}
-            >
-              English
-            </button>
-            <button
-              onClick={() => setLang("zh")}
-              className={`px-6 py-2.5 text-xs font-medium tracking-[0.15em] uppercase transition-all duration-300 ${
-                lang === "zh"
-                  ? "bg-gold text-midnight"
-                  : "text-text-light/60 hover:text-gold"
-              }`}
-            >
-              简体中文
-            </button>
-          </div>
-        </div>
-
         {/* Section Header */}
         <AnimatedSection className="mb-20 text-center md:mb-28">
           <motion.p

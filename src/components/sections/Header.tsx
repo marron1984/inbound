@@ -2,16 +2,30 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLang, type Lang } from "@/lib/i18n";
+
+const translations: Record<
+  string,
+  Record<Lang, string>
+> = {
+  philosophy:    { en: "Philosophy",       ja: "理念",           zh: "理念" },
+  pillars:       { en: "The Three Pillars", ja: "三つの柱",      zh: "三大支柱" },
+  programs:      { en: "Programs",         ja: "プログラム",     zh: "项目" },
+  treatments:    { en: "Treatments",       ja: "施術",           zh: "治疗" },
+  contact:       { en: "Contact",          ja: "お問い合わせ",   zh: "联系我们" },
+  inquire:       { en: "Inquire",          ja: "お問い合わせ",   zh: "咨询" },
+};
 
 const navLinks = [
-  { label: "Philosophy", href: "#philosophy" },
-  { label: "The Three Pillars", href: "#pillars" },
-  { label: "Programs", href: "#programs" },
-  { label: "Treatments", href: "#treatments" },
-  { label: "Contact", href: "#contact" },
+  { key: "philosophy",  href: "#philosophy" },
+  { key: "pillars",     href: "#pillars" },
+  { key: "programs",    href: "#programs" },
+  { key: "treatments",  href: "#treatments" },
+  { key: "contact",     href: "#contact" },
 ];
 
 export default function Header() {
+  const { lang } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -48,14 +62,14 @@ export default function Header() {
               href={link.href}
               className="text-sm font-light tracking-wider text-text-body transition-colors duration-300 hover:text-gold"
             >
-              {link.label}
+              {translations[link.key][lang]}
             </a>
           ))}
           <a
             href="#contact"
             className="ml-4 border border-gold/40 px-6 py-2.5 text-xs font-medium tracking-widest text-gold uppercase transition-all duration-300 hover:border-gold hover:bg-gold/10"
           >
-            Inquire
+            {translations.inquire[lang]}
           </a>
         </nav>
 
@@ -96,7 +110,7 @@ export default function Header() {
                   onClick={() => setMobileOpen(false)}
                   className="font-serif text-lg font-light tracking-wider text-text-dark transition-colors hover:text-gold"
                 >
-                  {link.label}
+                  {translations[link.key][lang]}
                 </a>
               ))}
               <a
@@ -104,7 +118,7 @@ export default function Header() {
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 border border-gold/40 px-6 py-3 text-center text-xs font-medium tracking-widest text-gold uppercase transition-all duration-300 hover:border-gold hover:bg-gold/10"
               >
-                Inquire
+                {translations.inquire[lang]}
               </a>
             </nav>
           </motion.div>
