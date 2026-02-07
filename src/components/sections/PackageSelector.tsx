@@ -265,7 +265,7 @@ function FloatingLangSwitcher({
         {/* Toggle button */}
         <button
           onClick={() => setOpen(!open)}
-          className="flex h-11 w-11 items-center justify-center border border-gold/30 bg-trust-blue/90 text-xs font-medium tracking-wider text-gold shadow-lg backdrop-blur-md transition-all duration-300 hover:border-gold hover:bg-trust-blue"
+          className="flex h-11 w-11 items-center justify-center border border-gold/30 bg-white-warm/95 text-xs font-medium tracking-wider text-gold shadow-lg backdrop-blur-md transition-all duration-300 hover:border-gold hover:bg-white-warm"
           aria-label="Switch language"
         >
           {langLabels[lang]}
@@ -279,7 +279,7 @@ function FloatingLangSwitcher({
               animate={{ opacity: 1, scaleY: 1 }}
               exit={{ opacity: 0, scaleY: 0 }}
               transition={{ duration: 0.25, ease: luxuryEase }}
-              className="mt-1 flex flex-col overflow-hidden border border-gold/20 bg-trust-blue/95 shadow-xl backdrop-blur-md"
+              className="mt-1 flex flex-col overflow-hidden border border-gold/20 bg-white-warm/98 shadow-xl backdrop-blur-md"
             >
               {langOrder
                 .filter((l) => l !== lang)
@@ -290,7 +290,7 @@ function FloatingLangSwitcher({
                       setLang(l);
                       setOpen(false);
                     }}
-                    className="px-4 py-2.5 text-xs font-medium tracking-wider text-text-light/70 transition-colors hover:bg-gold/10 hover:text-gold"
+                    className="px-4 py-2.5 text-xs font-medium tracking-wider text-text-body transition-colors hover:bg-gold/10 hover:text-gold"
                   >
                     {langLabels[l]}
                   </button>
@@ -317,11 +317,11 @@ function ImagePlaceholder({
 }) {
   const gradients = {
     suite:
-      "from-trust-blue-light/80 via-charcoal/60 to-midnight/90",
+      "from-[#f0e8d8] via-[#ebe3d3] to-[#e5dccb]",
     medical:
-      "from-charcoal/80 via-trust-blue/60 to-midnight/90",
+      "from-[#dce5ef] via-[#d6dfea] to-[#d0dae6]",
     vip:
-      "from-gold-dark/30 via-trust-blue/60 to-midnight/90",
+      "from-[#ede4d4] via-[#e8dfd0] to-[#e3d9c8]",
   };
 
   return (
@@ -331,8 +331,8 @@ function ImagePlaceholder({
       aria-label={alt}
     >
       {/* Decorative elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(176,144,99,0.08),transparent_70%)]" />
-      <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-trust-blue/80 to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(176,144,99,0.06),transparent_70%)]" />
+      <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white/40 to-transparent" />
 
       {/* Placeholder label */}
       <div className="relative text-center">
@@ -380,15 +380,15 @@ function PackageCard({
       whileHover={{ y: -6, transition: { duration: 0.4, ease: luxuryEase } }}
       className={`group relative flex h-full min-w-[320px] flex-col overflow-hidden transition-shadow duration-500 snap-center ${
         isFeatured
-          ? "border-2 border-gold/30 shadow-[0_0_50px_-15px_rgba(176,144,99,0.2)]"
-          : "border border-gold/10"
-      } bg-trust-blue`}
+          ? "border-2 border-gold/30 shadow-[0_0_50px_-15px_rgba(176,144,99,0.15)]"
+          : "border border-cream"
+      } bg-white-warm`}
     >
       {/* Featured Badge */}
       {isFeatured && (
         <div className="absolute left-0 right-0 top-0 z-20 flex justify-center">
           <div className="bg-gold px-5 py-1.5">
-            <span className="text-[10px] font-semibold tracking-[0.2em] text-trust-blue uppercase">
+            <span className="text-[10px] font-semibold tracking-[0.2em] text-white-warm uppercase">
               {featuredLabel}
             </span>
           </div>
@@ -405,17 +405,17 @@ function PackageCard({
       {/* Card Body */}
       <div className="flex flex-1 flex-col px-7 pt-7 pb-8 md:px-8">
         {/* Tier */}
-        <p className="text-[10px] font-medium tracking-[0.3em] text-gold/60 uppercase">
+        <p className="text-[10px] font-medium tracking-[0.3em] text-gold uppercase">
           {pkg.tier}
         </p>
 
         {/* Name */}
-        <h3 className="mt-2 font-serif text-2xl font-light tracking-wide text-text-on-dark">
+        <h3 className="mt-2 font-serif text-2xl font-light tracking-wide text-text-dark">
           {pkg.name}
         </h3>
 
         {/* Price + Duration */}
-        <div className="mt-4 flex items-baseline gap-3 border-b border-gold/10 pb-5">
+        <div className="mt-4 flex items-baseline gap-3 border-b border-cream pb-5">
           <span className="font-serif text-3xl font-light text-gold">
             {pkg.price}
           </span>
@@ -425,7 +425,7 @@ function PackageCard({
         </div>
 
         {/* Proposition */}
-        <p className="mt-5 text-sm font-light leading-[1.8] text-text-light/65">
+        <p className="mt-5 text-sm font-light leading-[1.8] text-text-body">
           {pkg.proposition}
         </p>
 
@@ -446,7 +446,7 @@ function PackageCard({
                   d="M4.5 12.75l6 6 9-13.5"
                 />
               </svg>
-              <span className="text-[13px] font-light leading-relaxed text-text-light/60">
+              <span className="text-[13px] font-light leading-relaxed text-text-body/80">
                 {h}
               </span>
             </li>
@@ -458,8 +458,8 @@ function PackageCard({
           href="#contact"
           className={`mt-8 block w-full py-4 text-center text-xs font-medium tracking-[0.18em] uppercase transition-all duration-500 ${
             isFeatured
-              ? "animate-glow bg-gold text-trust-blue hover:bg-gold-light"
-              : "border border-gold/25 text-gold hover:border-gold/60 hover:bg-gold/5 hover:shadow-[0_0_25px_-8px_rgba(176,144,99,0.25)]"
+              ? "animate-glow bg-gold text-white-warm hover:bg-gold-light"
+              : "border border-gold/30 text-gold hover:border-gold/60 hover:bg-gold/5 hover:shadow-[0_0_25px_-8px_rgba(176,144,99,0.2)]"
           }`}
         >
           {pkg.cta}
@@ -530,12 +530,12 @@ export default function PackageSelector() {
   return (
     <section
       id="programs"
-      className="relative overflow-hidden bg-trust-blue py-28 md:py-36 lg:py-44"
+      className="relative overflow-hidden bg-ivory py-28 md:py-36 lg:py-44"
     >
       {/* Background layers */}
       <div className="absolute inset-0">
-        <div className="absolute left-0 top-0 h-full w-full bg-[radial-gradient(ellipse_at_20%_20%,rgba(176,144,99,0.04),transparent_60%)]" />
-        <div className="absolute right-0 bottom-0 h-full w-full bg-[radial-gradient(ellipse_at_80%_80%,rgba(15,40,71,0.8),transparent_60%)]" />
+        <div className="absolute left-0 top-0 h-full w-full bg-[radial-gradient(ellipse_at_20%_20%,rgba(176,144,99,0.05),transparent_60%)]" />
+        <div className="absolute right-0 bottom-0 h-full w-full bg-[radial-gradient(ellipse_at_80%_80%,rgba(240,236,228,0.6),transparent_60%)]" />
       </div>
 
       {/* Floating Language Switcher */}
@@ -555,7 +555,7 @@ export default function PackageSelector() {
 
           <motion.h2
             variants={fadeInUp}
-            className="font-serif text-[clamp(1.75rem,3.5vw,2.75rem)] font-light tracking-wide text-text-on-dark"
+            className="font-serif text-[clamp(1.75rem,3.5vw,2.75rem)] font-light tracking-wide text-text-dark"
           >
             {t.heading[0]}
             <br />
@@ -564,7 +564,7 @@ export default function PackageSelector() {
 
           <motion.p
             variants={fadeInUp}
-            className="mx-auto mt-8 max-w-2xl text-base font-light leading-relaxed text-text-light/70"
+            className="mx-auto mt-8 max-w-2xl text-base font-light leading-relaxed text-text-body"
           >
             {t.intro}
           </motion.p>
@@ -597,7 +597,7 @@ export default function PackageSelector() {
         <AnimatedSection className="mt-16 text-center md:mt-20">
           <motion.p
             variants={fadeIn}
-            className="text-sm font-light italic text-text-light/40"
+            className="text-sm font-light italic text-text-muted"
           >
             {t.trustNote}
           </motion.p>

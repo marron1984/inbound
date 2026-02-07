@@ -127,13 +127,13 @@ function ThankYouMessage({
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-midnight/80 px-6 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-charcoal/70 px-6 backdrop-blur-sm"
     >
       <motion.div
         variants={thankYouVariants}
         initial="hidden"
         animate="visible"
-        className="relative w-full max-w-lg border border-gold/20 bg-charcoal p-10 shadow-2xl md:p-14"
+        className="relative w-full max-w-lg border border-cream bg-white-warm p-10 shadow-2xl md:p-14"
       >
         {/* Close */}
         <button
@@ -158,7 +158,7 @@ function ThankYouMessage({
 
         {/* Checkmark */}
         <div className="mb-8 flex justify-center">
-          <div className="flex h-16 w-16 items-center justify-center border border-gold/30 bg-midnight">
+          <div className="flex h-16 w-16 items-center justify-center border border-gold/30 bg-ivory">
             <svg
               className="h-7 w-7 text-gold"
               fill="none"
@@ -177,16 +177,16 @@ function ThankYouMessage({
 
         {/* English Message */}
         <div className="text-center">
-          <h3 className="font-serif text-2xl font-light tracking-wide text-text-on-dark">
+          <h3 className="font-serif text-2xl font-light tracking-wide text-text-dark">
             Thank you, {firstName}.
           </h3>
-          <p className="mt-5 text-sm font-light leading-[1.9] text-text-light/70">
+          <p className="mt-5 text-sm font-light leading-[1.9] text-text-body">
             Your private consultation request has been received. A dedicated
             medical concierge will reach out to you within{" "}
             <span className="font-medium text-gold">12 hours</span> via your
             preferred channel.
           </p>
-          <p className="mt-3 text-sm font-light leading-[1.9] text-text-light/70">
+          <p className="mt-3 text-sm font-light leading-[1.9] text-text-body">
             In the meantime, we&apos;re already preparing for your journey.
           </p>
         </div>
@@ -200,9 +200,9 @@ function ThankYouMessage({
 
         {/* Chinese Message */}
         <div className="text-center">
-          <p className="text-sm font-light leading-[1.9] text-text-light/50">
+          <p className="text-sm font-light leading-[1.9] text-text-body/70">
             感谢您，{firstName}。您的私人咨询请求已收到。我们的专属医疗管家将在
-            <span className="font-medium text-gold/70">12小时内</span>
+            <span className="font-medium text-gold">12小时内</span>
             通过您首选的联系方式与您取得联系。在此期间，我们已开始为您的旅程做准备。
           </p>
         </div>
@@ -570,7 +570,7 @@ export default function ConciergeForm() {
                   disabled={!isComplete}
                   className={`group relative w-full py-5 text-xs font-medium tracking-[0.2em] uppercase transition-all duration-500 ${
                     isComplete
-                      ? "animate-glow bg-gold text-trust-blue hover:bg-gold-light"
+                      ? "animate-glow bg-gold text-white-warm hover:bg-gold-light"
                       : "cursor-not-allowed bg-cream text-text-muted/50"
                   }`}
                 >

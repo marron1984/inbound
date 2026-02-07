@@ -4,34 +4,6 @@ import { motion } from "framer-motion";
 import { AnimatedSection, GoldDivider } from "@/components/ui/motion";
 import { fadeInUp, fadeIn } from "@/components/ui/motion";
 
-/**
- * IMAGE INTEGRATION GUIDE — Three Pillars
- *
- * Each pillar has a dedicated image placeholder.
- * When assets are ready, add images to /public/ and use next/image.
- *
- * Pillar 01 — The Stay:
- *   File:    /public/pillar-stay.jpg
- *   Subject: Luxury hotel suite interior — biophilic design, warm lighting,
- *            floor-to-ceiling windows overlooking Osaka at dusk
- *   Style:   Warm, intimate, zen-modern
- *   Aspect:  4:3 landscape
- *
- * Pillar 02 — The Nutrition:
- *   File:    /public/pillar-nutrition.jpg
- *   Subject: Kaiseki presentation on handcrafted ceramics — seasonal
- *            Japanese ingredients, natural wood table, soft ambient light
- *   Style:   Overhead or 45° angle, artisanal, organic textures
- *   Aspect:  4:3 landscape
- *
- * Pillar 03 — The Medicine:
- *   File:    /public/pillar-medicine.jpg
- *   Subject: Clean, modern treatment room — IV therapy station, medical
- *            equipment, calming interior with indirect lighting
- *   Style:   Clinical precision meets spa serenity, no patients visible
- *   Aspect:  4:3 landscape
- */
-
 interface PillarImage {
   label: string;
   sublabel: string;
@@ -58,15 +30,15 @@ const pillarImages: PillarImage[] = [
 
 function PillarImagePlaceholder({ image }: { image: PillarImage }) {
   const gradients = {
-    warm: "from-[#2a1f14]/80 via-[#1a150f]/60 to-[#0f1d35]/70",
-    natural: "from-[#1a1f14]/80 via-[#151a0f]/60 to-[#0f2a1d]/70",
-    clinical: "from-[#0f1d35]/80 via-[#0f1628]/60 to-[#14202e]/70",
+    warm: "from-[#f0e8d8] via-[#ebe3d3] to-[#e5dccb]",
+    natural: "from-[#e4ebe4] via-[#dfe8de] to-[#d8e2d6]",
+    clinical: "from-[#dce5ef] via-[#d6dfea] to-[#d0dae6]",
   };
 
   const accents = {
-    warm: "rgba(176,144,99,0.1)",
-    natural: "rgba(124,154,142,0.08)",
-    clinical: "rgba(15,40,71,0.15)",
+    warm: "rgba(176,144,99,0.12)",
+    natural: "rgba(124,154,142,0.1)",
+    clinical: "rgba(30,58,95,0.08)",
   };
 
   return (
@@ -83,29 +55,18 @@ function PillarImagePlaceholder({ image }: { image: PillarImage }) {
         }}
       />
 
-      {/* Window light streak (for suite) */}
-      {image.warmth === "warm" && (
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(176,144,99,0.06) 0%, transparent 40%)",
-          }}
-        />
-      )}
-
       {/* Subtle horizon for depth */}
-      <div className="absolute bottom-[30%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/8 to-transparent" />
+      <div className="absolute bottom-[30%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
 
       {/* Content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
         <div className="mb-3 flex justify-center">
           <div className="h-px w-10 bg-gold/25" />
         </div>
-        <p className="text-[10px] font-medium tracking-[0.25em] text-gold/40 uppercase">
+        <p className="text-[10px] font-medium tracking-[0.25em] text-gold/60 uppercase">
           {image.label}
         </p>
-        <p className="mt-2 max-w-[200px] text-[9px] font-light tracking-wider text-text-light/20">
+        <p className="mt-2 max-w-[200px] text-[9px] font-light tracking-wider text-text-body/30">
           {image.sublabel}
         </p>
         <div className="mt-3 flex justify-center">
@@ -114,7 +75,7 @@ function PillarImagePlaceholder({ image }: { image: PillarImage }) {
       </div>
 
       {/* Border frame effect */}
-      <div className="absolute inset-0 border border-gold/5" />
+      <div className="absolute inset-0 border border-gold/8" />
     </div>
   );
 }
@@ -166,9 +127,9 @@ const pillars = [
 
 export default function Pillars() {
   return (
-    <section id="pillars" className="relative bg-charcoal py-28 md:py-36 lg:py-44">
-      {/* Background texture */}
-      <div className="absolute inset-0 bg-gradient-to-b from-midnight/50 via-transparent to-midnight/50" />
+    <section id="pillars" className="relative bg-cream/50 py-28 md:py-36 lg:py-44">
+      {/* Subtle background texture */}
+      <div className="absolute inset-0 bg-gradient-to-b from-ivory via-transparent to-ivory" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-12">
         <AnimatedSection className="mb-20 text-center md:mb-28">
@@ -183,7 +144,7 @@ export default function Pillars() {
 
           <motion.h2
             variants={fadeInUp}
-            className="font-serif text-[clamp(1.75rem,3.5vw,2.75rem)] font-light tracking-wide text-text-on-dark"
+            className="font-serif text-[clamp(1.75rem,3.5vw,2.75rem)] font-light tracking-wide text-text-dark"
           >
             Stay. Nourish.{" "}
             <span className="italic text-gold">Regenerate.</span>
@@ -191,7 +152,7 @@ export default function Pillars() {
 
           <motion.p
             variants={fadeInUp}
-            className="mx-auto mt-8 max-w-2xl text-base font-light leading-relaxed text-text-light/70"
+            className="mx-auto mt-8 max-w-2xl text-base font-light leading-relaxed text-text-body"
           >
             Three dimensions of care, woven into a single transformative
             experience.
@@ -226,11 +187,11 @@ export default function Pillars() {
                       <div className="h-px flex-1 bg-gradient-to-r from-gold/20 to-transparent" />
                     </div>
 
-                    <p className="mb-3 text-[10px] font-medium tracking-[0.3em] text-gold/70 uppercase">
+                    <p className="mb-3 text-[10px] font-medium tracking-[0.3em] text-gold uppercase">
                       {pillar.partner}
                     </p>
 
-                    <h3 className="font-serif text-3xl font-light tracking-wide text-text-on-dark md:text-4xl">
+                    <h3 className="font-serif text-3xl font-light tracking-wide text-text-dark md:text-4xl">
                       {pillar.title}
                     </h3>
 
@@ -241,14 +202,14 @@ export default function Pillars() {
 
                   <motion.p
                     variants={fadeInUp}
-                    className="mt-8 max-w-xl text-base font-light leading-[1.9] text-text-light/70"
+                    className="mt-8 max-w-xl text-base font-light leading-[1.9] text-text-body"
                   >
                     {pillar.description}
                   </motion.p>
 
                   {/* Detail Card */}
                   <motion.div variants={fadeInUp} className="mt-8">
-                    <div className="border border-gold/10 bg-midnight/40 p-8 backdrop-blur-sm">
+                    <div className="border border-gold/10 bg-white-warm/60 p-8 backdrop-blur-sm">
                       <p className="mb-6 text-[10px] font-medium tracking-[0.3em] text-text-muted uppercase">
                         Key Elements
                       </p>
@@ -256,7 +217,7 @@ export default function Pillars() {
                         {pillar.details.map((detail) => (
                           <li key={detail} className="flex items-start gap-3">
                             <span className="mt-2 block h-1 w-1 flex-shrink-0 rotate-45 bg-gold" />
-                            <span className="text-sm font-light leading-relaxed text-text-light/80">
+                            <span className="text-sm font-light leading-relaxed text-text-body">
                               {detail}
                             </span>
                           </li>
