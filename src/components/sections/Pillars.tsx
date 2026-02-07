@@ -1,79 +1,35 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { AnimatedSection, GoldDivider } from "@/components/ui/motion";
 import { fadeInUp, fadeIn } from "@/components/ui/motion";
 
-interface PillarImage {
-  label: string;
-  sublabel: string;
-  warmth: "warm" | "natural" | "clinical";
-}
-
-const pillarImages: PillarImage[] = [
+const pillarImages = [
   {
-    label: "Luxury Suite Interior",
-    sublabel: "Biophilic Design · Circadian Lighting · Osaka Skyline",
-    warmth: "warm",
+    src: "https://images.unsplash.com/photo-1590490360182-c33d4b021b9e?auto=format&fit=crop&w=960&q=80",
+    alt: "Luxury hotel suite with warm lighting and city view",
   },
   {
-    label: "Kaiseki Precision Nutrition",
-    sublabel: "Seasonal Terroir · Biomarker-Guided · Artisan Ceramics",
-    warmth: "natural",
+    src: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=960&q=80",
+    alt: "Artistic Japanese cuisine presentation on handcrafted ceramics",
   },
   {
-    label: "Regenerative Treatment Suite",
-    sublabel: "IV Therapy · Cell Culture Lab · Advanced Diagnostics",
-    warmth: "clinical",
+    src: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=960&q=80",
+    alt: "Modern clean medical facility interior",
   },
 ];
 
-function PillarImagePlaceholder({ image }: { image: PillarImage }) {
-  const gradients = {
-    warm: "from-[#f0e8d8] via-[#ebe3d3] to-[#e5dccb]",
-    natural: "from-[#e4ebe4] via-[#dfe8de] to-[#d8e2d6]",
-    clinical: "from-[#dce5ef] via-[#d6dfea] to-[#d0dae6]",
-  };
-
-  const accents = {
-    warm: "rgba(176,144,99,0.12)",
-    natural: "rgba(124,154,142,0.1)",
-    clinical: "rgba(30,58,95,0.08)",
-  };
-
+function PillarImage({ index }: { index: number }) {
+  const img = pillarImages[index];
   return (
-    <div
-      className={`relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br ${gradients[image.warmth]}`}
-      role="img"
-      aria-label={image.label}
-    >
-      {/* Ambient light simulation */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: `radial-gradient(ellipse at 30% 40%, ${accents[image.warmth]}, transparent 60%)`,
-        }}
+    <div className="relative aspect-[4/3] w-full overflow-hidden">
+      <Image
+        src={img.src}
+        alt={img.alt}
+        fill
+        className="object-cover"
       />
-
-      {/* Subtle horizon for depth */}
-      <div className="absolute bottom-[30%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
-
-      {/* Content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-        <div className="mb-3 flex justify-center">
-          <div className="h-px w-10 bg-gold/25" />
-        </div>
-        <p className="text-[10px] font-medium tracking-[0.25em] text-gold/60 uppercase">
-          {image.label}
-        </p>
-        <p className="mt-2 max-w-[200px] text-[9px] font-light tracking-wider text-text-body/30">
-          {image.sublabel}
-        </p>
-        <div className="mt-3 flex justify-center">
-          <div className="h-px w-10 bg-gold/25" />
-        </div>
-      </div>
-
       {/* Border frame effect */}
       <div className="absolute inset-0 border border-gold/8" />
     </div>
@@ -173,7 +129,7 @@ export default function Pillars() {
                   variants={fadeInUp}
                   className="flex-shrink-0 lg:w-[420px] xl:w-[480px]"
                 >
-                  <PillarImagePlaceholder image={pillarImages[index]} />
+                  <PillarImage index={index} />
                 </motion.div>
 
                 {/* Content Side */}

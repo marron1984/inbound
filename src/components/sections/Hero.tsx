@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 
@@ -58,7 +59,8 @@ const pillarCards = [
     title: "Luxury Retreat",
     partner: "DHP City Development",
     description: "Curated sanctuaries designed for deep physiological rest.",
-    gradient: "from-cream via-ivory to-white-warm",
+    image:
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80",
     borderAccent: "border-gold/15",
   },
   {
@@ -67,7 +69,8 @@ const pillarCards = [
     title: "Regenerative Science",
     partner: "Tashima Clinic",
     description: "Japan's most advanced cell therapy and longevity protocols.",
-    gradient: "from-ivory via-cream to-white-warm",
+    image:
+      "https://images.unsplash.com/photo-1631815588090-d4bfec5b1b98?auto=format&fit=crop&w=800&q=80",
     borderAccent: "border-trust-blue/15",
   },
   {
@@ -76,7 +79,8 @@ const pillarCards = [
     title: "Precision Cuisine",
     partner: "Kanoya",
     description: "Biomarker-guided meals rooted in kaiseki tradition.",
-    gradient: "from-cream via-white-warm to-ivory",
+    image:
+      "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=800&q=80",
     borderAccent: "border-sage/20",
   },
 ];
@@ -84,43 +88,27 @@ const pillarCards = [
 export default function Hero() {
   return (
     <section className="relative flex min-h-screen flex-col overflow-hidden">
-      {/* Luminous Background — Warm, bright, airy */}
+      {/* Hero Background Image */}
       <div className="absolute inset-0">
-        {/* Layer 1 — Warm white base */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#f5f1ea] via-[#faf7f2] to-[#f0ece4]" />
-
-        {/* Layer 2 — Soft golden warmth from left */}
+        <Image
+          src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1920&q=80"
+          alt="Panoramic view of Osaka cityscape"
+          fill
+          className="object-cover"
+          priority
+        />
+        {/* Bright overlay for text readability */}
+        <div className="absolute inset-0 bg-white/60" />
+        {/* Warm gradient from left */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse at 15% 45%, rgba(176,144,99,0.1) 0%, transparent 50%)",
+              "linear-gradient(to right, rgba(253,252,250,0.85) 0%, rgba(253,252,250,0.6) 40%, rgba(253,252,250,0.4) 70%, rgba(253,252,250,0.5) 100%)",
           }}
         />
-
-        {/* Layer 3 — Pale blue sky wash (upper right) */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse at 75% 15%, rgba(195,215,235,0.2) 0%, transparent 50%)",
-          }}
-        />
-
-        {/* Layer 4 — Pearlescent center sheen */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(255,255,255,0.5) 0%, transparent 40%, rgba(255,252,245,0.3) 70%, transparent 100%)",
-          }}
-        />
-
-        {/* Layer 5 — Soft warm horizon line */}
-        <div className="absolute bottom-[30%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/8 to-transparent" />
-
-        {/* Layer 6 — Bottom gradient deepening for card area */}
-        <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-cream/80 via-cream/30 to-transparent" />
+        {/* Bottom gradient for card area */}
+        <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-t from-[#f0ece4]/90 via-[#f0ece4]/50 to-transparent" />
       </div>
 
       {/* Main Content — Left-Aligned */}
@@ -218,23 +206,15 @@ export default function Hero() {
               {/* Top gold accent line */}
               <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
 
-              {/* Image placeholder area */}
-              <div
-                className={`relative h-32 overflow-hidden bg-gradient-to-br ${card.gradient} sm:h-36 lg:h-40`}
-              >
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="mx-auto mb-2 h-px w-6 bg-gold/20" />
-                    <p className="text-[9px] font-medium tracking-[0.3em] text-gold/40 uppercase">
-                      {card.id === "stay"
-                        ? "Hotel Suite"
-                        : card.id === "medical"
-                          ? "Clinic / Lab"
-                          : "Japanese Cuisine"}
-                    </p>
-                    <div className="mx-auto mt-2 h-px w-6 bg-gold/20" />
-                  </div>
-                </div>
+              {/* Card image */}
+              <div className="relative h-32 overflow-hidden sm:h-36 lg:h-40">
+                <Image
+                  src={card.image}
+                  alt={card.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-white-warm/60 to-transparent" />
               </div>
 
               {/* Card body */}
