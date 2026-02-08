@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import type { ReactNode } from "react";
 import { AnimatedSection, GoldDivider, motion } from "@/components/ui/motion";
 import { fadeInUp, fadeIn } from "@/components/ui/motion";
 import { useLang } from "@/lib/i18n";
 import type { Lang } from "@/lib/i18n";
-import { images } from "@/lib/images";
+import { images, fallbackGradients } from "@/lib/images";
+import SafeImage from "@/components/ui/SafeImage";
 
 const content: Record<
   Lang,
@@ -133,11 +133,11 @@ function MorningVisual({ ariaLabel }: { ariaLabel: string }) {
       role="img"
       aria-label={ariaLabel}
     >
-      <Image
+      <SafeImage
         src={images.philosophy.morning.src}
         alt={images.philosophy.morning.alt}
-        fill
-        className="object-cover"
+        sizes="100vw"
+        fallbackGradient={fallbackGradients.philosophy}
       />
       {/* Soft overlay for luminous feel */}
       <div className="absolute inset-0 bg-white/20" />

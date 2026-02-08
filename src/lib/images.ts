@@ -6,6 +6,10 @@
  *
  * Current: Unsplash stock photos (free, no attribution required)
  * Replace with: Your own photography from /public/images/
+ *
+ * Note: Images are loaded with `unoptimized` via SafeImage component,
+ * meaning the browser fetches directly from the CDN (no server proxy).
+ * Unsplash's own ?auto=format&fit=crop handles optimization.
  */
 
 export const images = {
@@ -63,4 +67,16 @@ export const images = {
       alt: "Exclusive VIP lounge with personalized concierge service",
     },
   },
+} as const;
+
+/**
+ * Fallback gradients per section context.
+ * Shown while images load or if they fail.
+ */
+export const fallbackGradients = {
+  hero: "linear-gradient(135deg, #e8f0f2 0%, #d4e4e8 25%, #c8dce4 50%, #d8e6ea 75%, #eef4f6 100%)",
+  medical: "linear-gradient(135deg, #e6eef4 0%, #d0dfe8 50%, #e6eef4 100%)",
+  stay: "linear-gradient(135deg, #f0ece4 0%, #e8e2d8 50%, #f0ece4 100%)",
+  nutrition: "linear-gradient(135deg, #f0ede4 0%, #e4ddd0 50%, #f0ede4 100%)",
+  philosophy: "linear-gradient(135deg, #faf8f4 0%, #f0ece4 50%, #faf8f4 100%)",
 } as const;
