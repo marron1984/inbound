@@ -1,24 +1,26 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { AnimatedSection, GoldDivider } from "@/components/ui/motion";
 import { fadeInUp, fadeIn } from "@/components/ui/motion";
 import { useLang } from "@/lib/i18n";
 import type { Lang } from "@/lib/i18n";
-import { images } from "@/lib/images";
+import { images, fallbackGradients } from "@/lib/images";
+import SafeImage from "@/components/ui/SafeImage";
 
 const pillarImages = [images.pillars.stay, images.pillars.nutrition, images.pillars.medicine];
+
+const pillarFallbacks = [fallbackGradients.stay, fallbackGradients.nutrition, fallbackGradients.medical];
 
 function PillarImage({ index }: { index: number }) {
   const img = pillarImages[index];
   return (
     <div className="relative aspect-[4/3] w-full overflow-hidden">
-      <Image
+      <SafeImage
         src={img.src}
         alt={img.alt}
-        fill
-        className="object-cover"
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        fallbackGradient={pillarFallbacks[index]}
       />
       {/* Border frame effect */}
       <div className="absolute inset-0 border border-gold/8" />

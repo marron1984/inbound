@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useRef, useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
@@ -8,7 +7,8 @@ import { AnimatedSection, GoldDivider } from "@/components/ui/motion";
 import { fadeInUp, fadeIn } from "@/components/ui/motion";
 import { useLang } from "@/lib/i18n";
 import type { Lang } from "@/lib/i18n";
-import { images } from "@/lib/images";
+import { images, fallbackGradients } from "@/lib/images";
+import SafeImage from "@/components/ui/SafeImage";
 
 /* ========================================
    i18n Content Structure
@@ -246,6 +246,12 @@ const cardVariants: Variants = {
 /* ========================================
    Package Image Component
    ======================================== */
+const packageFallbacks: Record<string, string> = {
+  suite: fallbackGradients.stay,
+  medical: fallbackGradients.medical,
+  vip: fallbackGradients.stay,
+};
+
 function PackageImage({
   alt,
   variant,
@@ -255,11 +261,11 @@ function PackageImage({
 }) {
   return (
     <div className="relative aspect-[16/10] overflow-hidden">
-      <Image
+      <SafeImage
         src={images.packages[variant].src}
         alt={alt}
-        fill
-        className="object-cover"
+        sizes="(min-width: 768px) 33vw, 85vw"
+        fallbackGradient={packageFallbacks[variant]}
       />
       <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white-warm/60 to-transparent" />
     </div>
