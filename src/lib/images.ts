@@ -11,8 +11,8 @@
 export const images = {
   hero: {
     background: {
-      src: "https://images.unsplash.com/photo-1480796927426-f609979314bd?auto=format&fit=crop&w=1920&q=80",
-      alt: "Panoramic view of Osaka cityscape at golden hour",
+      src: "https://images.unsplash.com/photo-1551190822-a9ce113ac100?auto=format&fit=crop&w=1920&q=80",
+      alt: "Modern clinical interior with advanced medical equipment",
     },
   },
   heroCards: {
@@ -45,8 +45,8 @@ export const images = {
       alt: "Artistic Japanese cuisine on handcrafted ceramics",
     },
     medicine: {
-      src: "https://images.unsplash.com/photo-1551190822-a9ce113ac100?auto=format&fit=crop&w=960&q=80",
-      alt: "Modern clean clinical interior with medical equipment",
+      src: "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?auto=format&fit=crop&w=960&q=80",
+      alt: "Modern clean medical treatment room",
     },
   },
   packages: {

@@ -92,6 +92,12 @@ const channels: { id: CommChannel; label: string; icon: React.ReactNode }[] = [
   },
 ];
 
+const channelLabels: Record<Lang, Record<CommChannel, string>> = {
+  en: { whatsapp: "WhatsApp", wechat: "WeChat", line: "LINE", email: "Email" },
+  ja: { whatsapp: "WhatsApp", wechat: "WeChat", line: "LINE", email: "\u30E1\u30FC\u30EB" },
+  zh: { whatsapp: "WhatsApp", wechat: "\u5FAE\u4FE1", line: "LINE", email: "\u90AE\u4EF6" },
+};
+
 const channelPlaceholders: Record<Lang, Record<CommChannel, string>> = {
   en: {
     whatsapp: "Your WhatsApp number (e.g. +1 234 567 8900)",
@@ -174,9 +180,9 @@ const formContent: Record<Lang, {
   submitHint: string;
 }> = {
   en: {
-    sectionLabel: "Begin Your Private Consultation",
-    heading: "Your Journey Begins with",
-    headingAccent: "a Conversation",
+    sectionLabel: "Medical Concierge",
+    heading: "Begin Your Private",
+    headingAccent: "Consultation",
     description:
       "This is not a form — it's the first step of your transformation. Share what matters to you, and our medical concierge will craft a program around your life, your goals, and your schedule.",
     whatHappensNext: "What Happens Next",
@@ -194,13 +200,13 @@ const formContent: Record<Lang, {
     fullNamePlaceholder: "How should we address you?",
     emailLabel: "Email Address",
     emailPlaceholder: "For your consultation confirmation",
-    channelLabel: "How Would You Like Us to Reach You?",
+    channelLabel: "Preferred Contact",
     channelIdLabel: "Your {channel} ID",
-    arrivalLabel: "Estimated Arrival in Japan",
-    arrivalHint: "Approximate is fine — we'll coordinate the details together.",
+    arrivalLabel: "Preferred Arrival Month",
+    arrivalHint: "Approximate is fine \u2014 we\u2019ll coordinate the details together.",
     interestLabel: "Program of Interest",
     interestPlaceholder: "Tell us what interests you",
-    goalsLabel: "Share Your Wellness Goals",
+    goalsLabel: "Anything you\u2019d like us to know",
     goalsPlaceholder:
       "What brings you to us? Any specific concerns, past treatments, dietary requirements, or goals you'd like us to know about...",
     goalsHint: "All medical information is treated with the strictest confidentiality.",
@@ -208,9 +214,9 @@ const formContent: Record<Lang, {
     submitHint: "No commitment required. Your concierge will follow up within 12 hours.",
   },
   ja: {
-    sectionLabel: "プライベートカウンセリングを始める",
-    heading: "あなたの旅は",
-    headingAccent: "対話から始まります",
+    sectionLabel: "\u30E1\u30C7\u30A3\u30AB\u30EB\u30B3\u30F3\u30B7\u30A7\u30EB\u30B8\u30E5",
+    heading: "\u30D7\u30E9\u30A4\u30D9\u30FC\u30C8",
+    headingAccent: "\u30B3\u30F3\u30B5\u30EB\u30C6\u30FC\u30B7\u30E7\u30F3\u3092\u59CB\u3081\u308B",
     description:
       "これは単なるフォームではありません — あなたの変革への第一歩です。大切なことを共有してください。私たちのメディカルコンシェルジュが、あなたの生活、目標、スケジュールに合わせたプログラムをお作りします。",
     whatHappensNext: "今後の流れ",
@@ -242,9 +248,9 @@ const formContent: Record<Lang, {
     submitHint: "ご予約の義務はありません。12時間以内にコンシェルジュからご連絡いたします。",
   },
   zh: {
-    sectionLabel: "开始您的私人咨询",
-    heading: "您的旅程始于",
-    headingAccent: "一次对话",
+    sectionLabel: "\u533B\u7597\u793C\u5BBE",
+    heading: "\u5F00\u59CB\u60A8\u7684",
+    headingAccent: "\u79C1\u4EBA\u54A8\u8BE2",
     description:
       "这不仅是一份表单 — 这是您蜕变之旅的第一步。请分享对您重要的事情，我们的医疗礼宾将围绕您的生活、目标和日程，量身定制专属方案。",
     whatHappensNext: "接下来会发生什么",
@@ -635,7 +641,7 @@ export default function ConciergeForm() {
                     >
                       {ch.icon}
                       <span className="text-[10px] font-medium tracking-[0.1em] uppercase">
-                        {ch.label}
+                        {channelLabels[lang][ch.id]}
                       </span>
                     </button>
                   ))}
@@ -653,7 +659,7 @@ export default function ConciergeForm() {
                     transition={{ duration: 0.3, ease: luxuryEase }}
                   >
                     <FormLabel htmlFor="channelId" required>
-                      {t.channelIdLabel.replace("{channel}", channels.find((c) => c.id === formData.channel)?.label || "")}
+                      {t.channelIdLabel.replace("{channel}", channelLabels[lang][formData.channel as CommChannel])}
                     </FormLabel>
                     <input
                       id="channelId"
